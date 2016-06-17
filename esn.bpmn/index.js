@@ -39,7 +39,10 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
         'bpmn/directives.js',
         'bpmn/controllers.js',
         'bpmn-js/bpmn_module.js',
-        'bpmn/bpmn.js'
+        'bpmn-js/bpmn.js',
+        'bpmn-js/bpmnPanel.js',
+        'bpmn-js/bpmnPanelProvider.js',
+        'bpmn-js/camunda.js'
         //'bpmn-js-properties-panel/lib/index.js',
         //'bpmn-js-properties-panel/lib/provider/camunda/index.js'
       ];

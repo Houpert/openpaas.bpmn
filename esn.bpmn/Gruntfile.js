@@ -3,7 +3,10 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     browserify: {
-      'frontend/js/bpmn/bpmn.js': ['frontend/js/bpmn/bpmn.src.js']
+      'frontend/js/bpmn-js/bpmn.js': ['frontend/js/bpmn-js/bpmn.src.js'],
+      'frontend/js/bpmn-js/bpmnPanel.js': ['frontend/js/bpmn-js/bpmnPanel.src.js'],
+      'frontend/js/bpmn-js/bpmnPanelProvider.js': ['frontend/js/bpmn-js/bpmnPanelProvider.src.js'],
+      'frontend/js/bpmn-js/camunda.js': ['frontend/js/bpmn-js/camunda.src.js']
     },
     jshint: {
       options: {
