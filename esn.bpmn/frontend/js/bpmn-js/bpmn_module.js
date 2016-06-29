@@ -1,6 +1,7 @@
 'use strict';
 angular.module('bpmn-js', [])
 .factory('bpmnFactory', function($window) {
+
     var BpmnJsLoader = function() {
       console.log('BpmnJsLoader');
       console.log($window.BpmnJS);
@@ -20,7 +21,7 @@ angular.module('bpmn-js', [])
        loadBpmnJs: BpmnJsLoader,
        loadBpmnPanel: BpmnPanelLoader,
        loadPropertiesProvider : PropertiesProviderModuleLoader
-     };
+      };
 
 
 });
