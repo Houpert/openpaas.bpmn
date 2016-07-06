@@ -2,7 +2,6 @@
 
 angular.module('esn.bpmn', [
   'op.dynamicDirective',
-  'bpmn-js',
   'ui.router'
 ])
 

@@ -38,22 +38,14 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
         'bpmn/services.js',
         'bpmn/directives.js',
         'bpmn/controllers.js',
-        'bpmn-js/bpmn_module.js',
         'bpmn-js/bpmn.js',
         'bpmn-js/bpmnPanel.js',
         'bpmn-js/bpmnPanelProvider.js',
         'bpmn-js/camunda.js',
         'bpmn-js/brfs.js'
-        //'bpmn-js-properties-panel/lib/index.js',
-        //'bpmn-js-properties-panel/lib/provider/camunda/index.js'
       ];
 
-      var jsFiles = [
-        '../components/bpmn-js/dist/bpmn-viewer.min.js'
-      ];
-
-      webserverWrapper.injectJS('helloworld', jsFiles, ['esn']);
-      webserverWrapper.injectAngularModules('helloworld', angularFiles, ['bpmn-js', 'esn.bpmn'], ['esn']);
+      webserverWrapper.injectAngularModules('helloworld', angularFiles, ['esn.bpmn'], ['esn']);
       var lessFile = path.resolve(__dirname, './frontend/css/styles.less');
       webserverWrapper.injectLess('helloworld', [lessFile], 'esn');
       webserverWrapper.addApp('helloworld', app);
