@@ -9,18 +9,13 @@ angular.module('esn.bpmn', [
   '$stateProvider',
   'dynamicDirectiveServiceProvider',
   function($stateProvider, dynamicDirectiveServiceProvider) {
-    var helloworld = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'application-menu-hello-world', {priority: 28});
-    dynamicDirectiveServiceProvider.addInjection('esn-application-menu', helloworld);
+    var bpmnJs = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'application-menu-hello-world', {priority: 28});
+    dynamicDirectiveServiceProvider.addInjection('esn-application-menu', bpmnJs);
 
     $stateProvider
-      .state('helloworld', {
-        url: '/helloworld',
-        templateUrl: '/helloworld/views/index.html',
-        controller: 'helloWorldController'
-      })
       .state('bpmn', {
         url: '/bpmn',
-        templateUrl: '/helloworld/views/bpmn.html',
+        templateUrl: '/bpmnJs/views/bpmn.html',
         controller: 'bpmnController'
       })
       ;

@@ -45,10 +45,10 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
         'bpmn-js/brfs.js'
       ];
 
-      webserverWrapper.injectAngularModules('helloworld', angularFiles, ['esn.bpmn'], ['esn']);
+      webserverWrapper.injectAngularModules('bpmnJs', angularFiles, ['esn.bpmn'], ['esn']);
       var lessFile = path.resolve(__dirname, './frontend/css/styles.less');
-      webserverWrapper.injectLess('helloworld', [lessFile], 'esn');
-      webserverWrapper.addApp('helloworld', app);
+      webserverWrapper.injectLess('bpmnJs', [lessFile], 'esn');
+      webserverWrapper.addApp('bpmnJs', app);
 
       return callback();
     }

@@ -477,6 +477,7 @@ label.pp-hidden {
 .djs-properties-header > .label {
   font-size: 120%;
   font-weight: bolder;
+  color: black;
 }
 /* line 10, node_modules/bpmn-js-properties-panel/styles/header.less */
 .djs-properties-header > .search {
