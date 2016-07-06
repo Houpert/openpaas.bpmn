@@ -21,7 +21,7 @@ angular.module('esn.bpmn', [
       })
       .state('bpmn', {
         url: '/bpmn',
-        templateUrl: '/helloworld/views/test.html',
+        templateUrl: '/helloworld/views/bpmn.html',
         controller: 'bpmnController'
       })
       ;
