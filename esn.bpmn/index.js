@@ -41,7 +41,6 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
         'bpmn-js/bpmn.js',
         'bpmn-js/bpmnPanel.js',
         'bpmn-js/bpmnPanelProvider.js',
-        'bpmn-js/camunda.js',
         'bpmn-js/brfs.js'
       ];
 
