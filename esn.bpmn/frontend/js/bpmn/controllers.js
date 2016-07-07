@@ -3,7 +3,7 @@
 angular.module('esn.bpmn')
   .controller('bpmnController', function($scope, $window, bpmnJs, bpmnPropertiesPanel, bpmnPropertiesPanelProvider) {
 
-    var newDiagramXML =  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><bpmn:definitions xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" id=\"Definitions_1\" targetNamespace=\"http://bpmn.io/schema/bpmn\"><bpmn:process id=\"Process_1\" isExecutable=\"false\"><bpmn:startEvent id=\"StartEvent_1\" /></bpmn:process><bpmndi:BPMNDiagram id=\"BPMNDiagram_1\"><bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1\"><bpmndi:BPMNShape id=\"_BPMNShape_StartEvent_2\" bpmnElement=\"StartEvent_1\"><dc:Bounds x=\"173\" y=\"102\" width=\"36\" height=\"36\" /></bpmndi:BPMNShape></bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn:definitions>"
+    var initDiagramXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><bpmn:definitions xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" id=\"Definitions_1\" targetNamespace=\"http://bpmn.io/schema/bpmn\"><bpmn:process id=\"Process_1\" isExecutable=\"false\" /><bpmndi:BPMNDiagram id=\"BPMNDiagram_1\"><bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1\" /></bpmndi:BPMNDiagram></bpmn:definitions>"
 
     var $ = $window.jQuery,
         BpmnModeler = bpmnJs;
@@ -25,12 +25,12 @@ angular.module('esn.bpmn')
       ]
     });
 
-    function createNewDiagramFile(newXml) {
-      openDiagram(newXml);
+    function importNewDiagram(importXml) {
+      openDiagram(importXml);
     }
 
     function initDiagram() {
-      openDiagram(newDiagramXML);
+      openDiagram(initDiagramXml);
     }
 
     function openDiagram(xml) {
@@ -51,9 +51,14 @@ angular.module('esn.bpmn')
       });
     }
 
+    /*
+    //For manage SVG download
     function saveSVG(done) {
       bpmnModeler.saveSVG(done);
     }
+    saveSVG(function(err, xml){
+          //do some ajax thing
+    });*/
 
     function saveDiagram(done) {
       bpmnModeler.saveXML({ format: true }, function(err, xml) {
@@ -61,29 +66,36 @@ angular.module('esn.bpmn')
       });
     }
 
-    initDiagram();
+    $scope.initDiagram = function(){
+      initDiagram();
+    }
+
     $scope.saveXML = function(){
-      //TODO
+      saveDiagram(function(err, xml){
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(xml);
+          //TODO XML CONTENT FROM BPMN
+        }
+      });
     }
-
-    $scope.printTest = function(){
-      //TODO TEST
-
-      console.log(bpmnModeler);
-    }
-
 
     $scope.file_changed = function(element) {
       var newXml = undefined;
+
       $scope.$apply(function(scope) {
          var fileXML = element.files[0];
          var reader = new FileReader();
          reader.onload = function(xml) {
-            createNewDiagramFile(xml.target.result);
+            importNewDiagram(xml.target.result);
          };
 
         newXml = reader.readAsBinaryString(fileXML);
       });
+
+
+    initDiagram();
 
     };
 });
