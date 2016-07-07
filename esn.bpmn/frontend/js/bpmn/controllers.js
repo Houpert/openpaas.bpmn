@@ -27,6 +27,10 @@ angular.module('esn.bpmn')
           ]
         });
 
+        function createNewDiagramFile(newXml) {
+          openDiagram(newXml);
+        }
+
         function createNewDiagram() {
           openDiagram(newDiagramXML);
         }
@@ -103,7 +107,7 @@ angular.module('esn.bpmn')
 
 
 
-        createNewDiagram(newDiagramXML);
+        createNewDiagram();
 
 
       $scope.printTest = function(){
@@ -135,6 +139,8 @@ $(document).on('ready', function() {
     e.stopPropagation();
     e.preventDefault();
 
+
+    console.log("####CREATE HERE")
     createNewDiagram();
   });
 
@@ -184,6 +190,21 @@ $(document).on('ready', function() {
 
 
 
+  $scope.file_changed = function(element) {
+    var newXml = undefined;
+    $scope.$apply(function(scope) {
+       var fileXML = element.files[0];
+       var reader = new FileReader();
+       reader.onload = function(xml) {
+          createNewDiagramFile(xml.target.result);
+       };
+      newXml = reader.readAsBinaryString(fileXML);
+    });
+
+  };
 
 
-  });
+
+
+
+});

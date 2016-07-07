@@ -2,6 +2,7 @@
   <link href="../bpmnJs/css/app-bpmn.css" rel="stylesheet">
   <link href="../bpmnJs/css/bpmn-embeded.css" rel="stylesheet">
   <link href="../bpmnJs/css/diagram-js.css" rel="stylesheet">
+    <link href="../bpmnJs/css/styles.css" rel="stylesheet">
 </head>
 
 <body ng-app='esn.bpmn'  ng-controller='bpmnController'>
@@ -10,20 +11,20 @@
   <div class="content" id="js-drop-zone">
 
     <div class="message intro">
-      <!--<div class="note">
+      <div class="note">
         Drop BPMN diagram from your desktop or <a id="js-create-diagram" href>create a new diagram</a> to get started.
-      </div>-->
+      </div>
     </div>
 
     <div class="message error">
-        <!--<div class="note">
+        <div class="note">
       <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
 
         <div class="details">
           <span>cause of the problem</span>
           <pre></pre>
         </div>
-      </div>-->
+      </div>
     </div>
 
     <div class="canvas" id="js-canvas"></div>
@@ -35,9 +36,9 @@
       download
     </li>
     <li>
-      <a id="js-download-diagram" href title="download BPMN diagram">
-        BPMN diagram
-      </a>
+      <input class="js-upload-diagram" ng-model="photo"
+           onchange="angular.element(this).scope().file_changed(this)"
+           type="file" accept="text/xml"/>
     </li>
     <li>
       <a id="js-download-svg" href title="download as SVG image">
