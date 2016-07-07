@@ -11,200 +11,79 @@ angular.module('esn.bpmn')
     var propertiesPanelModule = bpmnPropertiesPanel,
         propertiesProviderModule = bpmnPropertiesPanelProvider;
 
+    var container = $('#js-drop-zone');
+    var canvas = $('#js-canvas');
 
-        var container = $('#js-drop-zone');
+    var bpmnModeler = new BpmnModeler({
+      container: canvas,
+      propertiesPanel: {
+        parent: '#js-properties-panel'
+      },
+      additionalModules: [
+        propertiesPanelModule,
+        propertiesProviderModule
+      ]
+    });
 
-        var canvas = $('#js-canvas');
-
-        var bpmnModeler = new BpmnModeler({
-          container: canvas,
-          propertiesPanel: {
-            parent: '#js-properties-panel'
-          },
-          additionalModules: [
-            propertiesPanelModule,
-            propertiesProviderModule
-          ]
-        });
-
-        function createNewDiagramFile(newXml) {
-          openDiagram(newXml);
-        }
-
-        function createNewDiagram() {
-          openDiagram(newDiagramXML);
-        }
-
-        function openDiagram(xml) {
-
-          bpmnModeler.importXML(xml, function(err) {
-
-            if (err) {
-
-              container
-                .removeClass('with-diagram')
-                .addClass('with-error');
-
-              container.find('.error pre').text(err.message);
-
-              console.error(err);
-            } else {
-              container
-                .removeClass('with-error')
-                .addClass('with-diagram');
-            }
-
-
-          });
-        }
-
-        function saveSVG(done) {
-          bpmnModeler.saveSVG(done);
-        }
-
-        function saveDiagram(done) {
-
-          bpmnModeler.saveXML({ format: true }, function(err, xml) {
-            done(err, xml);
-          });
-        }
-
-        function registerFileDrop(container, callback) {
-
-          function handleFileSelect(e) {
-            e.stopPropagation();
-            e.preventDefault();
-
-            var files = e.dataTransfer.files;
-
-            var file = files[0];
-
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-
-              var xml = e.target.result;
-
-              callback(xml);
-            };
-
-            reader.readAsText(file);
-          }
-
-          function handleDragOver(e) {
-            e.stopPropagation();
-            e.preventDefault();
-
-            e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-          }
-
-          container.get(0).addEventListener('dragover', handleDragOver, false);
-          container.get(0).addEventListener('drop', handleFileSelect, false);
-        }
-
-
-
-
-
-
-        createNewDiagram();
-
-
-      $scope.printTest = function(){
-        var downloadLink = $('#js-download-diagram');
-        var downloadSvgLink = $('#js-download-svg');
-
-        console.log(downloadLink);
-        console.log(downloadSvgLink);
-
-      }
-
-
-////// file drag / drop ///////////////////////
-
-// check file api availability
-if (!window.FileList || !window.FileReader) {
-  window.alert(
-    'Looks like you use an older browser that does not support drag and drop. ' +
-    'Try using Chrome, Firefox or the Internet Explorer > 10.');
-} else {
-  registerFileDrop(container, openDiagram);
-}
-
-// bootstrap diagram functions
-
-$(document).on('ready', function() {
-
-  $('#js-create-diagram').click(function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-
-
-    console.log("####CREATE HERE")
-    createNewDiagram();
-  });
-
-  var downloadLink = $('#js-download-diagram');
-  var downloadSvgLink = $('#js-download-svg');
-
-  $('.buttons a').click(function(e) {
-    if (!$(this).is('.active')) {
-      e.preventDefault();
-      e.stopPropagation();
+    function createNewDiagramFile(newXml) {
+      openDiagram(newXml);
     }
-  });
 
-  function setEncoded(link, name, data) {
-	    console.log(data);
-	    console.log(name);
-	    console.log(link);
+    function initDiagram() {
+      openDiagram(newDiagramXML);
+    }
 
-    var encodedData = encodeURIComponent(data);
+    function openDiagram(xml) {
+      bpmnModeler.importXML(xml, function(err) {
 
-    if (data) {
-      link.addClass('active').attr({
-        'href': 'data:application/bpmn20-xml;charset=UTF-8,' + encodedData,
-        'download': name
+        if (err) {
+          container
+            .removeClass('with-diagram')
+            .addClass('with-error');
+
+          container.find('.error pre').text(err.message);
+          console.error(err);
+        } else {
+          container
+            .removeClass('with-error')
+            .addClass('with-diagram');
+        }
       });
-    } else {
-      link.removeClass('active');
     }
-  }
 
-  var debounce = require('lodash/function/debounce');
+    function saveSVG(done) {
+      bpmnModeler.saveSVG(done);
+    }
 
-  var exportArtifacts = debounce(function() {
+    function saveDiagram(done) {
+      bpmnModeler.saveXML({ format: true }, function(err, xml) {
+        done(err, xml);
+      });
+    }
 
-    saveSVG(function(err, svg) {
-      setEncoded(downloadSvgLink, 'diagram.svg', err ? null : svg);
-    });
+    initDiagram();
+    $scope.saveXML = function(){
+      //TODO
+    }
 
-    saveDiagram(function(err, xml) {
-      setEncoded(downloadLink, 'diagram.bpmn', err ? null : xml);
-    });
-  }, 500);
+    $scope.printTest = function(){
+      //TODO TEST
 
-  bpmnModeler.on('commandStack.changed', exportArtifacts);
-});
-
-
-
-
-  $scope.file_changed = function(element) {
-    var newXml = undefined;
-    $scope.$apply(function(scope) {
-       var fileXML = element.files[0];
-       var reader = new FileReader();
-       reader.onload = function(xml) {
-          createNewDiagramFile(xml.target.result);
-       };
-      newXml = reader.readAsBinaryString(fileXML);
-    });
-
-  };
+      console.log(bpmnModeler);
+    }
 
 
+    $scope.file_changed = function(element) {
+      var newXml = undefined;
+      $scope.$apply(function(scope) {
+         var fileXML = element.files[0];
+         var reader = new FileReader();
+         reader.onload = function(xml) {
+            createNewDiagramFile(xml.target.result);
+         };
 
+        newXml = reader.readAsBinaryString(fileXML);
+      });
 
-
+    };
 });

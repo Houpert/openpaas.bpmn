@@ -33,13 +33,16 @@
 
   <ul class="buttons">
     <li>
-      download
-    </li>
-    <li>
       <input class="js-upload-diagram" ng-model="photo"
            onchange="angular.element(this).scope().file_changed(this)"
            type="file" accept="text/xml"/>
     </li>
+    <li>
+      <a ng-click="saveXML()" href title="Save">
+        Save Test
+      </a>
+    </li>
+
     <li>
       <a id="js-download-svg" href title="download as SVG image">
         SVG image
