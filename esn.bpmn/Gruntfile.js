@@ -5,8 +5,7 @@ module.exports = function(grunt) {
     browserify: {
       'frontend/js/bpmn-js/bpmn.js': ['frontend/js/bpmn-js/bpmn.src.js'],
       'frontend/js/bpmn-js/bpmnPanel.js': ['frontend/js/bpmn-js/bpmnPanel.src.js'],
-      'frontend/js/bpmn-js/bpmnPanelProvider.js': ['frontend/js/bpmn-js/bpmnPanelProvider.src.js'],
-      'frontend/js/bpmn-js/brfs.js': ['frontend/js/bpmn-js/brfs.src.js']
+      'frontend/js/bpmn-js/bpmnPanelProvider.js': ['frontend/js/bpmn-js/bpmnPanelProvider.src.js']
     },
     jshint: {
       options: {

@@ -73,10 +73,14 @@ angular.module('esn.bpmn')
     $scope.saveXML = function(){
       saveDiagram(function(err, xml){
         if (err) {
-          console.error(err);
+          alert('BPMN isn\'t initialized');
         } else {
-          console.log(xml);
-          //TODO XML CONTENT FROM BPMN
+          if (saveAs) {
+            var file = new File([xml], "BPMN.xml", {type: "text/plain"});
+            saveAs(file);
+          }else{
+              alert('Save file is not supported');
+          }
         }
       });
     }
