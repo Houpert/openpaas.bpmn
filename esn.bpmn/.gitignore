@@ -1,2 +1,4 @@
 node_modules
 frontend/components
+frontend/js/bpmn-js/*.js
+!frontend/js/bpmn-js/*.src.js
