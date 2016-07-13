@@ -39,10 +39,7 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
         'bpmn/services.js',
         'bpmn/directives.js',
         'bpmn/controllers.js',
-        'bpmn-js/bpmn.js',
-        'bpmn-js/bpmnPanel.js',
-        'bpmn-js/bpmnPanelProvider.js',
-        'bpmn-js/camunda.js',
+        'bpmn-js/bpmn-loader.js'
       ];
 
       webserverWrapper.injectAngularModules('bpmnJs', angularFiles, ['esn.bpmn'], ['esn']);
