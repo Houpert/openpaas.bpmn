@@ -11,9 +11,5 @@ module.exports = function(dependencies) {
 
   router.get('/api/file/bpmn', middleware.passThrough, controller.listFile);
 
-  router.get('/api/file/bpmn/:id', middleware.passThrough, controller.selectFile);
-
-  router.post('/api/file/bpmn', middleware.passThrough, controller.writeFile);
-
   return router;
 };

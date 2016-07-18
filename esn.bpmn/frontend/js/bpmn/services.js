@@ -1,35 +1,29 @@
 'use strict';
 
+//TODO Remove when list file is done
+//578cd3e560d489273bd87af1 (empty)
+//578cd27b60d489273bd87aef (empty)
+//578cf783ed38236e5dbaf3a7 (with 2 node)
+//578d0024ed38236e5dbaf3a9 (condition node)
+//578d011498316a86696abd51 (pizza diagram)
+
 angular.module('esn.bpmn')
-  .factory('bpmnService', function($http) {
-    //TODO manage return server
+  .factory('bpmnService', function($http, fileUploadService) {
+    //TODO manage return file list server
     var listFile = function() {
-      return $http.get('/bpmnJs/api/file/bpmn').then(function(response) {
+      return $http.get('/api/files').then(function(response) {
         return response;
       });
     };
 
-    var selectFile = function() {
-      //TODO manage file return xml format
-      return $http.get('/bpmnJs/api/file/bpmn/test').then(function(response) {
-        return response;
-      });
+    var selectFile = function(id) {
+        return $http.get('/api/files/'+id).then(function(response) {
+          return response;
+        })
     };
 
-    var writeFile = function() {
-      //TODO Manage data to store
-
-      var bpmnJson = {
-          "id": "8456f852-9a65-4ab6-8ccb-5e0275b03d71",
-          "contentType": "contentType",
-          "metadata": "metadata",
-          "stream": "stream",
-          "option": "option"
-        }
-
-      return $http.post('/bpmnJs/api/file/bpmn', bpmnJson).then(function(response) {
-        return response;
-      });
+    var writeFile = function(file) {
+      fileUploadService.get().addFile(file, true);
     };
 
     return {

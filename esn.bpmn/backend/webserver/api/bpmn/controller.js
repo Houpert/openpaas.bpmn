@@ -9,19 +9,6 @@ function listFile(req, res) {
   return res.json(200, {message: myMessage});
 }
 
-function selectFile(req, res) {
-  var idRequest = req.params.id;
-  //TODO make traitement here
-
-  return res.json(200, {message: idRequest});
-}
-
-function writeFile(req, res) {
-  var myJson = req.body;
-  return res.json(200, {message: req.body});
-}
-
-
 module.exports = function(dependencies) {
   logger = dependencies('logger');
 
@@ -31,8 +18,5 @@ module.exports = function(dependencies) {
   core = require('./core')(dependencies);
   return {
     listFile: listFile,
-    writeFile: writeFile,
-    selectFile: selectFile
-
   };
 };

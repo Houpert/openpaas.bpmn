@@ -67,9 +67,38 @@ angular.module('esn.bpmn')
       });
     }
 
-    $scope.readServerFile = function(){
-      //TODO manage service backend
+    $scope.listFile = function(){
+      var result = bpmnService.listFile();
+      console.log(result);
     }
+
+    $scope.readServerFile = function(id){
+      //TODO Manage listFile for good id
+      id = "578d011498316a86696abd51";  //TODO remove when list file is done
+
+      bpmnService.selectFile(id).then(function(result) {
+        importNewDiagram(result.data);
+      }, function(err) {
+        alert(err);
+      });
+    }
+
+    $scope.saveXMLServer = function(fileName){
+      saveDiagram(function(err, xml){
+        if (err) {
+          alert('BPMN isn\'t initialized :'+err);
+        } else {
+          var blob = new Blob([xml], {type: "text/xml"});
+          if(fileName === undefined)
+            fileName = 'defaultBPMN_Name';
+
+          var fileOfBlob = new File([blob], fileName+'.xml');
+          bpmnService.writeFile(fileOfBlob);
+        }
+      });
+    }
+
+
 
     $scope.initDiagram = function(){
       initDiagram();
