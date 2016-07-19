@@ -83,14 +83,13 @@ angular.module('esn.bpmn')
       });
     }
 
-    $scope.saveXMLServer = function(fileName){
+    $scope.saveXMLServer = function(){
       saveDiagram(function(err, xml){
         if (err) {
           alert('BPMN isn\'t initialized :'+err);
         } else {
           var blob = new Blob([xml], {type: "text/xml"});
-          if(fileName === undefined)
-            fileName = 'defaultBPMN_Name';
+          var fileName = bpmnModeler.definitions.rootElements[0].id;
 
           var fileOfBlob = new File([blob], fileName+'.xml');
           bpmnService.writeFile(fileOfBlob);
@@ -110,7 +109,9 @@ angular.module('esn.bpmn')
           alert('BPMN isn\'t initialized');
         } else {
           if (saveAs) {
-            var file = new File([xml], "BPMN.xml", {type: "text/plain"});
+            var fileName = bpmnModeler.definitions.rootElements[0].id;
+
+            var file = new File([xml], fileName+".xml", {type: "text/plain"});
             saveAs(file);
           }else{
               alert('Save file is not supported');
