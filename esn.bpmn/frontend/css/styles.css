@@ -9,3 +9,7 @@
 .buttons a{
   opacity: inherit;
 }
+
+.bpmn-icon-size{
+  font-size: 16px;
+}
