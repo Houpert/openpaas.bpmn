@@ -1,7 +1,6 @@
 'use strict';
 
 //TODO Remove when list file is done
-//578cd3e560d489273bd87af1 (empty)
 //578cd27b60d489273bd87aef (empty)
 //578cf783ed38236e5dbaf3a7 (with 2 node)
 //578d0024ed38236e5dbaf3a9 (condition node)
@@ -22,11 +21,19 @@ angular.module('esn.bpmn')
         })
     };
 
+    var deleteFile = function(id) {
+        id = '578cd27b60d489273bd87aef';
+        return $http.delete('/api/files/'+id).then(function(response) {
+          return response;
+        })
+    };
+
     var writeFile = function(file) {
       fileUploadService.get().addFile(file, true);
     };
 
     return {
+      deleteFile : deleteFile,
       listFile : listFile,
       writeFile : writeFile,
       selectFile : selectFile

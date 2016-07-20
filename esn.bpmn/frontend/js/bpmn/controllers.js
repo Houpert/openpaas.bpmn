@@ -72,6 +72,11 @@ angular.module('esn.bpmn')
       console.log(result);
     }
 
+    $scope.deleteFile = function(id){
+      var result = bpmnService.deleteFile('fake');
+      console.log(result);
+    }
+
     $scope.readServerFile = function(id){
       //TODO Manage listFile for good id
       id = "578d011498316a86696abd51";  //TODO remove when list file is done
@@ -96,8 +101,6 @@ angular.module('esn.bpmn')
         }
       });
     }
-
-
 
     $scope.initDiagram = function(){
       initDiagram();
