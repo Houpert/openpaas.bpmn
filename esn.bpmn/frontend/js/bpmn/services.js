@@ -16,7 +16,6 @@ angular.module('esn.bpmn')
     };
 
     var deleteFile = function(id) {
-        id = '578cd27b60d489273bd87aef';
         return $http.delete('/api/files/'+id).then(function(response) {
           return response;
         })
@@ -40,6 +39,7 @@ angular.module('esn.bpmn')
         return err;
       });
     };
+
 
     return {
       deleteFile : deleteFile,

@@ -1,0 +1,46 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <h4 class="modal-title" ng-bind-html="title"></h4>
+      </div>
+      <div class="modal-body table-striped table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                Id BPMN
+              </th>
+              <th>
+                Open
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat='id in listBpmnFile'>
+                <td>
+                  {{id}}
+                </td>
+                <td>
+                  <a ng-click="readServerFile(id);" href title="Open">
+                    <span class="glyphicon glyphicon-open"/>
+                  </a>
+                </td>
+                <td>
+                  <a ng-click="deleteFile(id);" href title="Delete">
+                    <span class="glyphicon glyphicon-remove"/>
+                  </a>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
