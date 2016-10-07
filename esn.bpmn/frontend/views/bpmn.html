@@ -46,10 +46,17 @@
     </li>
 
     <li class="bpmn-icon-size">
-      <a ng-click="listFile()" href title="List">
+    <a ng-click="listFile()" href title="List">
         <span class="glyphicon glyphicon-th-list"/> List
       </a>
     </li>
+
+    <div ng-repeat='id in listBpmnFile'>
+      <a ng-click="readServerFile(id);" href title="Open">{{id}}</a>
+    </div>
+
+
+
 
     <li class="bpmn-icon-size">
       <a ng-click="readServerFile(fake);" href title="Open">
@@ -69,6 +76,12 @@
       </a>
     </li>
 
+    <li class="bpmn-icon-size">
+      <a ng-click="activitiWebService()" href title="activiti">
+        <span class="glyphicon glyphicon-export"/> Activiti
+      </a>
+    </li>
 
 </ul>
+
 </body>

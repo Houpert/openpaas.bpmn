@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService) {
+  .controller('bpmnController', function($scope, $window, $http,bpmnLoader, bpmnService) {
+
+    $scope.listBpmnFile = listFile();
 
     var initDiagramXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><bpmn:definitions xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" id=\"Definitions_1\" targetNamespace=\"http://bpmn.io/schema/bpmn\"><bpmn:process id=\"Process_1\" isExecutable=\"false\" /><bpmndi:BPMNDiagram id=\"BPMNDiagram_1\"><bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1\" /></bpmndi:BPMNDiagram></bpmn:definitions>"
 
@@ -13,6 +15,7 @@ angular.module('esn.bpmn')
 
     var container = $('#js-drop-zone');
     var canvas = $('#js-canvas');
+
 
     var bpmnModeler = new BpmnModeler({
       container: canvas,
@@ -53,13 +56,6 @@ angular.module('esn.bpmn')
         }
       });
     }
-    /*
-    function saveSVG(done) {
-      bpmnModeler.saveSVG(done);
-    }
-    saveSVG(function(err, xml){
-          //do some ajax thing
-    });*/
 
     function saveDiagram(done) {
       bpmnModeler.saveXML({ format: true }, function(err, xml) {
@@ -67,9 +63,10 @@ angular.module('esn.bpmn')
       });
     }
 
-    $scope.listFile = function(){
-      var result = bpmnService.listFile();
-      console.log(result);
+    function listFile() {
+      var listFile = bpmnService.listFile();
+      listFile = ["578d0024ed38236e5dbaf3a9", "578d011498316a86696abd51", "57f4b40adba1804a1c9a5c9b"]
+      return listFile;
     }
 
     $scope.deleteFile = function(id){
@@ -79,7 +76,7 @@ angular.module('esn.bpmn')
 
     $scope.readServerFile = function(id){
       //TODO Manage listFile for good id
-      id = "578d011498316a86696abd51";  //TODO remove when list file is done
+    //  id = "57f4b40adba1804a1c9a5c9b";  //TODO remove when list file is done
 
       bpmnService.selectFile(id).then(function(result) {
         importNewDiagram(result.data);
@@ -96,8 +93,22 @@ angular.module('esn.bpmn')
           var blob = new Blob([xml], {type: "text/xml"});
           var fileName = bpmnModeler.definitions.rootElements[0].id;
 
-          var fileOfBlob = new File([blob], fileName+'.xml');
+          var fileOfBlob = new File([blob], fileName);
           bpmnService.writeFile(fileOfBlob);
+        }
+      });
+    }
+
+    $scope.activitiWebService = function(){
+      saveDiagram(function(err, xml){
+        if (err) {
+          alert('BPMN isn\'t initialized :'+err);
+        } else {
+          var blob = new Blob([xml], {type: "text/xml"});
+          var fileName = bpmnModeler.definitions.rootElements[0].id;
+
+          var fileOfBlob = new File([blob], fileName);
+          var result = bpmnService.activitiWebService(fileOfBlob);
         }
       });
     }
@@ -114,7 +125,7 @@ angular.module('esn.bpmn')
           if (saveAs) {
             var fileName = bpmnModeler.definitions.rootElements[0].id;
 
-            var file = new File([xml], fileName+".xml", {type: "text/plain"});
+            var file = new File([xml], fileName, {type: "text/plain"});
             saveAs(file);
           }else{
               alert('Save file is not supported');

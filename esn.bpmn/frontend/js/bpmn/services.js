@@ -1,11 +1,5 @@
 'use strict';
 
-//TODO Remove when list file is done
-//578cd27b60d489273bd87aef (empty)
-//578cf783ed38236e5dbaf3a7 (with 2 node)
-//578d0024ed38236e5dbaf3a9 (condition node)
-//578d011498316a86696abd51 (pizza diagram)
-
 angular.module('esn.bpmn')
   .factory('bpmnService', function($http, fileUploadService) {
     //TODO manage return file list server
@@ -32,10 +26,26 @@ angular.module('esn.bpmn')
       fileUploadService.get().addFile(file, true);
     };
 
+    var activitiWebService = function(file) {
+      var uploadUrl = 'http://10.31.0.112:8090/action/parse'
+
+      var fd = new FormData();
+      fd.append('file', file);
+      return $http.post(uploadUrl, fd, {
+          transformRequest: angular.identity,
+          headers: {'Content-Type': undefined}
+      }).success(function(res){
+        return res;
+      }).error(function(err){
+        return err;
+      });
+    };
+
     return {
       deleteFile : deleteFile,
       listFile : listFile,
       writeFile : writeFile,
-      selectFile : selectFile
+      selectFile : selectFile,
+      activitiWebService : activitiWebService
     };
   });
