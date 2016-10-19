@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .controller('bpmnController', function($scope, $window, $http,bpmnLoader, bpmnService, $modal) {
+  .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, $modal, formlyLoader) {
 
     $scope.listBpmnFile = listFile();
 
@@ -80,9 +80,6 @@ angular.module('esn.bpmn')
     }
 
     $scope.readServerFile = function(id){
-      //TODO Manage listFile for good id
-    //  id = "57f4b40adba1804a1c9a5c9b";  //TODO remove when list file is done
-
       bpmnService.selectFile(id).then(function(result) {
         importNewDiagram(result.data);
       }, function(err) {
@@ -151,9 +148,25 @@ angular.module('esn.bpmn')
 
         newXml = reader.readAsBinaryString(fileXML);
       });
-
-
     initDiagram();
-
     };
+
+    <!-- FOR THE DEMO -->
+
+    $scope.activitiWebServiceDemo = function(){
+      saveDiagram(function(err, xml){
+        if (err) {
+          alert('BPMN isn\'t initialized :'+err);
+        } else {
+          var blob = new Blob([xml], {type: "text/xml"});
+          var fileName = bpmnModeler.definitions.rootElements[0].id;
+
+          var fileOfBlob = new File([blob], fileName);
+          var result = bpmnService.activitiWebServiceDemo(fileOfBlob);
+        }
+      });
+    }
+
+    <!-- END FOR THE DEMO -->
+
 });
