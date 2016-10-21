@@ -39,6 +39,7 @@ angular.module('esn.bpmn')
         alert('Process started');
         return res;
       }).error(function(err){
+        alert('Error during the  execution : '+err.message)
         return err;
       });
     };
