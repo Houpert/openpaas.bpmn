@@ -3,7 +3,6 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     browserify: {
-      'frontend/js/modules/formly-loader.js': ['frontend/js/modules/formly-loader.src.js'],
       'frontend/js/modules/bpmn-loader.js': ['frontend/js/modules/bpmn-loader.src.js']
     },
     jshint: {

@@ -1,0 +1,22 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller='formController'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <h4 class="modal-title" ng-bind-html="title"></h4>
+      </div>
+      <div class="modal-body ">
+
+        <form name="activitiName" ng-submit="onSubmit()" novalidate>
+          <formly-form model="activiti" fields="activitiFields">
+            <br>
+            <button type="submit" class="btn  btn-primary submit-button" ng-click="submit(activiti)">Submit</button>
+          </formly-form>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

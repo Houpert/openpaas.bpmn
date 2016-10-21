@@ -2,7 +2,9 @@
 
 angular.module('esn.bpmn', [
   'op.dynamicDirective',
-  'ui.router'
+  'ui.router',
+  'formly',
+  'formlyBootstrap'
 ])
 
 .config([

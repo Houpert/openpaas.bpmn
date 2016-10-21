@@ -41,6 +41,20 @@ angular.module('esn.bpmn')
         return err;
       });
     };
+
+    var listActiveTask = function(){
+      var listActiveBpmnUrl = webServiceActivitiURL+'action/task/list';
+      return $http.get(listActiveBpmnUrl).then(function(response) {
+        return response;
+      });
+    }
+
+    var completeTask = function(values){
+      var completeActiveTask = webServiceActivitiURL+'action/task/complet';
+      return $http.post(completeActiveTask, JSON.stringify(values)).then(function(response) {
+        return response;
+      });
+    }
 <!-- DEMO START HERE -->
     var activitiWebServiceDemo = function(file) {
       var uploadUrl = webServiceActivitiURL+'action/parse/test'
@@ -64,6 +78,8 @@ angular.module('esn.bpmn')
       writeFile : writeFile,
       selectFile : selectFile,
       activitiWebService : activitiWebService,
+      listActiveTask : listActiveTask,
+      completeTask : completeTask,
       activitiWebServiceDemo : activitiWebServiceDemo
     };
   });

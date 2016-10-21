@@ -1,6 +1,7 @@
 'use strict';
 
 var AwesomeModule = require('awesome-module');
+
 var Dependency = AwesomeModule.AwesomeModuleDependency;
 var path = require('path');
 
@@ -35,12 +36,15 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
       var webserverWrapper = dependencies('webserver-wrapper');
       // Register every exposed frontend scripts
       var angularFiles = [
+        '../components/api-check/dist/api-check.js',
+        '../components/angular-formly/dist/formly.js',
+        '../components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
         'app.js',
         'bpmn/services.js',
         'bpmn/directives.js',
         'bpmn/controllers.js',
-        'modules/bpmn-loader.js',
-        'modules/formly-loader.js'
+        'form/formly.js',
+        'modules/bpmn-loader.js'
       ];
 
       webserverWrapper.injectAngularModules('bpmnJs', angularFiles, ['esn.bpmn'], ['esn']);

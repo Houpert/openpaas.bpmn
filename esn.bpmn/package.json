@@ -41,9 +41,8 @@
   "license": "AGPLv3",
   "dependencies": {
     "angular": "^1.5.8",
-    "angular-formly": "^8.4.0",
-    "api-check": "^7.5.5",
     "awesome-module": "1.0.0",
+    "bootstrap": "^3.3.7",
     "bower": "1.7.0",
     "bpmn-js": "^0.15.0",
     "bpmn-js-properties-panel": "^0.7.0",
