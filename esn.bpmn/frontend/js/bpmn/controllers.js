@@ -10,7 +10,7 @@ angular.module('esn.bpmn')
       myModal.show();
     };
 
-    var myFormModal = $modal({title: 'Form modal', scope: $scope, template: 'bpmnJs/views/formly.html', show: false});
+    var myFormModal = $modal({title: 'Form task', scope: $scope, template: 'bpmnJs/views/formly.html', show: false});
     $scope.showFormModal = function(id){
       myFormModal.show();
     };
@@ -152,25 +152,7 @@ angular.module('esn.bpmn')
 
         newXml = reader.readAsBinaryString(fileXML);
       });
-    initDiagram();
-    };
-
-    <!-- FOR THE DEMO -->
-
-    $scope.activitiWebServiceDemo = function(){
-      saveDiagram(function(err, xml){
-        if (err) {
-          alert('BPMN isn\'t initialized :'+err);
-        } else {
-          var blob = new Blob([xml], {type: "text/xml"});
-          var fileName = bpmnModeler.definitions.rootElements[0].id;
-
-          var fileOfBlob = new File([blob], fileName);
-          var result = bpmnService.activitiWebServiceDemo(fileOfBlob);
-        }
-      });
+      initDiagram();
     }
-
-    <!-- END FOR THE DEMO -->
 
 });

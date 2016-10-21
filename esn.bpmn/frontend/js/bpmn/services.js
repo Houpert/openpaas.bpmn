@@ -36,6 +36,7 @@ angular.module('esn.bpmn')
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
       }).success(function(res){
+        alert('Process started');
         return res;
       }).error(function(err){
         return err;
@@ -55,22 +56,6 @@ angular.module('esn.bpmn')
         return response;
       });
     }
-<!-- DEMO START HERE -->
-    var activitiWebServiceDemo = function(file) {
-      var uploadUrl = webServiceActivitiURL+'action/parse/test'
-
-      var fd = new FormData();
-      fd.append('file', file);
-      return $http.post(uploadUrl, fd, {
-          transformRequest: angular.identity,
-          headers: {'Content-Type': undefined}
-      }).success(function(res){
-        return res;
-      }).error(function(err){
-        return err;
-      });
-    };
-    <!-- DEMO END HERE -->
 
     return {
       deleteFile : deleteFile,
@@ -79,7 +64,6 @@ angular.module('esn.bpmn')
       selectFile : selectFile,
       activitiWebService : activitiWebService,
       listActiveTask : listActiveTask,
-      completeTask : completeTask,
-      activitiWebServiceDemo : activitiWebServiceDemo
+      completeTask : completeTask
     };
   });

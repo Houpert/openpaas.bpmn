@@ -3,25 +3,40 @@
 angular.module('esn.bpmn')
   .controller('formController', function($scope, bpmnService) {
 
-    $scope.activitiName = "MyActivitiForm";
-    var bpmnFormData = bpmnService.listActiveTask().then(function(result) {
-      $scope.activitiFields = result.data[0].form;
-      return result.data[0].form;
+    $scope.isShow = false;
+    $scope.hasTask = false;
+
+    $scope.activitiName = "My task form";
+    $scope.activitiFields ={};
+
+    $scope.bpmnFormDataList = bpmnService.listActiveTask().then(function(result) {
+      if(result.data.length == 0){
+        $scope.hasTask = false;
+      }else {
+        $scope.hasTask = true;
+      }
+      $scope.bpmnFormDataList = result.data;
+      return result.data;
     }, function(err) {
       alert(err);
     });
 
+    /*The form model*/
     $scope.activiti = {
     };
 
+
+    $scope.selectForm = function(data){
+      $scope.activitiFields = data.form;
+      $scope.isShow = true;
+    }
+
     $scope.onSubmit = function(id){
-      console.log($scope.activiti)
       bpmnService.completeTask($scope.activiti).then(function(result) {
-        console.log(result);
         alert('Task Complete');
         return result;
       }, function(err) {
-        alert('Error during the task execution')
+        alert('Error during the task execution : '+err.data.message)
       });
     };
 });
