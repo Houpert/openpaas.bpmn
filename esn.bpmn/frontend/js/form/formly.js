@@ -21,6 +21,10 @@ angular.module('esn.bpmn')
       alert(err);
     });
 
+    $scope.selectTaskInformation = function(data){
+      return data[data.length-1].templateOptions.placeholder;
+    }
+
     /*The form model*/
     $scope.activiti = {
     };

@@ -10,7 +10,7 @@
             <thead>
               <tr>
                 <th>
-                  Id BPMN
+                  Task Name
                 </th>
                 <th>
                   Select Task
@@ -20,7 +20,7 @@
             <tbody>
                 <tr ng-repeat='data in bpmnFormDataList'>
                   <td>
-                    {{data.taskId}}
+                    {{selectTaskInformation(data.form)}}
                   </td>
                   <td>
                     <a ng-click="selectForm(data);" href title="Open">
