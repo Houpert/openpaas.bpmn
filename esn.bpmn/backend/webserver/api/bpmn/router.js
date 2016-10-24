@@ -5,11 +5,13 @@ var express = require('express');
 module.exports = function(dependencies) {
 
   var controller = require('./controller')(dependencies);
-  var middleware = require('./middleware')(dependencies);
+  //var authorizationMW = dependencies('authorizationMW');
 
   var router = express.Router();
 
-  router.get('/api/file/bpmn', middleware.passThrough, controller.listFile);
+  router.get('/api/myfiles',
+    //authorizationMW.requiresAPILogin,
+    controller.findCreatorFile);
 
   return router;
 };

@@ -6,7 +6,7 @@ angular.module('esn.bpmn')
     var webServiceActivitiURL = 'http://10.31.0.112:8090/';
 
     var listFile = function() {
-      return $http.get('/api/files').then(function(response) {
+      return $http.get('/bpmnJs/api/myfiles').then(function(response) {
         return response;
       });
     };
@@ -26,6 +26,8 @@ angular.module('esn.bpmn')
     var writeFile = function(file) {
       fileUploadService.get().addFile(file, true);
     };
+
+<!--ACTIVITI WEBSERVICE-->
 
     var activitiWebService = function(file) {
       var uploadUrl = webServiceActivitiURL+'action/parse'
