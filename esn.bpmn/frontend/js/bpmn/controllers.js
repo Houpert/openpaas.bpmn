@@ -26,7 +26,6 @@ angular.module('esn.bpmn')
     var container = $('#js-drop-zone');
     var canvas = $('#js-canvas');
 
-
     var bpmnModeler = new BpmnModeler({
       container: canvas,
       propertiesPanel: {
@@ -74,13 +73,17 @@ angular.module('esn.bpmn')
     }
 
     function listFile() {
-      var listFile = bpmnService.listFile();
-      listFile = ["578d0024ed38236e5dbaf3a9", "578d011498316a86696abd51", "57f4b40adba1804a1c9a5c9b"]
-      return listFile;
+      return bpmnService.listFile().then(function(result) {
+        $scope.listBpmnFile = result.data;
+        return result.data;
+      }, function(err) {
+        alert(err);
+      });
     }
 
-    $scope.deleteFile = function(id){
+    $scope.deleteFile = function(id, index){
       var result = bpmnService.deleteFile(id);
+      $scope.listBpmnFile.splice(index, 1);
     }
 
     $scope.readServerFile = function(id){
