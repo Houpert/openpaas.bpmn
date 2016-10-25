@@ -16,7 +16,7 @@ function findCreatorFile(req, res) {
     }
   };
 
-  var result = filestore.find(query, function(err, meta) {
+  filestore.find(query, function(err, meta) {
     if (err) {
       return res.status(500).json({error: {code: 500, message: 'Error while searching file', details: err ? err.message : response.body}});
     }
@@ -27,7 +27,6 @@ function findCreatorFile(req, res) {
       return res.status(200).json(meta);
     }
   });
-  return res.status(200).json(result);
 }
 
 module.exports = function(dependencies) {
