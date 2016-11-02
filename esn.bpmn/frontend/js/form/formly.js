@@ -38,6 +38,7 @@ angular.module('esn.bpmn')
     $scope.onSubmit = function(id){
       bpmnService.completeTask($scope.activiti).then(function(result) {
         alert('Task Complete');
+        $scope.closeModal();
         return result;
       }, function(err) {
         alert('Error during the task execution : '+err.data.message)
