@@ -5,12 +5,13 @@ angular.module('esn.bpmn')
 
     $scope.listBpmnFile = listFile();
 
-    var myModal = $modal({title: 'BPMN File', scope: $scope, template: 'bpmnJs/views/modal.html', show: false});
+    var myBpmnListModal = $modal({title: 'BPMN List', scope: $scope, template: 'bpmnJs/views/bpmnList.html', show: false});
     $scope.showModal = function(id){
-      myModal.show();
+      $scope.listBpmnFile = listFile();
+      myBpmnListModal.show();
     };
 
-    var myFormModal = $modal({title: 'Form task', scope: $scope, template: 'bpmnJs/views/formly.html', show: false});
+    var myFormModal = $modal({title: 'Activiti form task', scope: $scope, template: 'bpmnJs/views/formly.html', show: false});
     $scope.showFormModal = function(id){
       myFormModal.show();
     };
