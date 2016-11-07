@@ -8,6 +8,7 @@ var path = require('path');
 var myAwesomeModule = new AwesomeModule('esn.bpmn', {
   dependencies: [
     new Dependency(Dependency.TYPE_NAME, 'linagora.esn.core.logger', 'logger'),
+    new Dependency(Dependency.TYPE_NAME, 'linagora.esn.core.auth', 'auth'),
     new Dependency(Dependency.TYPE_NAME, 'linagora.esn.core.webserver.wrapper', 'webserver-wrapper'),
     new Dependency(Dependency.TYPE_NAME, 'linagora.esn.core.filestore', 'filestore')
   ],
@@ -43,6 +44,7 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
         'bpmn/services.js',
         'bpmn/directives.js',
         'bpmn/controllers.js',
+        'bpmn/token.js',
         'form/formly.js',
         'modules/bpmn-loader.js'
       ];

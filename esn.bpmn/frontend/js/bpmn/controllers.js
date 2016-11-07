@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, $modal) {
+  .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, $modal, tokenService) {
 
     $scope.listBpmnFile = listFile();
+    $scope.userToken = tokenService.getToken();
 
     var myBpmnListModal = $modal({title: 'BPMN List', scope: $scope, template: 'bpmnJs/views/bpmnList.html', show: false});
     $scope.showModal = function(id){
