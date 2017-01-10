@@ -11,7 +11,9 @@ angular.module('esn.bpmn', [
   '$stateProvider',
   'dynamicDirectiveServiceProvider',
   function($stateProvider, dynamicDirectiveServiceProvider) {
-    var bpmnJs = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'application-menu-hello-world', {priority: 28});
+    //var bpmnJs = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'application-menu-hello-world', {priority: 28});
+    var bpmnJs = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'application-menu-cnet', {priority: 28});
+
     dynamicDirectiveServiceProvider.addInjection('esn-application-menu', bpmnJs);
 
     $stateProvider

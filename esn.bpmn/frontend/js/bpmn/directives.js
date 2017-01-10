@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .directive('applicationMenuHelloWorld', function(applicationMenuTemplateBuilder) {
-    return {
-      retrict: 'E',
-      replace: true,
-      template: applicationMenuTemplateBuilder('/#/bpmn', 'mdi-thumb-up', 'BPMN')
-    };
-  })
+.directive('applicationMenuCnet', function(applicationMenuTemplateBuilder) {
+  return {
+    retrict: 'E',
+    replace: true,
+    template: applicationMenuTemplateBuilder('/#/bpmn', 'c2net', 'C2Net')
+  };
+})
   .directive('dir1', function() {
     return {
       restrict: 'E',

@@ -3,7 +3,7 @@
 angular.module('esn.bpmn')
   .factory('bpmnService', function($http, fileUploadService) {
     //TODO manage return file list server
-    var webServiceActivitiURL = 'http://10.31.0.112:8090/';
+    var webServiceActivitiURL = 'http://10.31.0.114:8090/';
 
     var listFile = function() {
       return $http.get('/bpmnJs/api/myfiles').then(function(response) {
