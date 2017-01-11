@@ -30,7 +30,7 @@ angular.module('esn.bpmn')
 <!--ACTIVITI WEBSERVICE-->
 
     var activitiWebService = function(file) {
-      var uploadUrl = webServiceActivitiURL+'action/parse'
+      var uploadUrl = webServiceActivitiURL+'action/parse/execute'
 
       var fd = new FormData();
       fd.append('file', file);
@@ -38,7 +38,7 @@ angular.module('esn.bpmn')
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
       }).success(function(res){
-        alert('Process started');
+        alert('Process started : '+res.idNumber);
         return res;
       }).error(function(err){
         alert('Error during the  execution : '+err.message)
