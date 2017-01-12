@@ -6,10 +6,10 @@ angular.module('esn.bpmn')
     $scope.isShow = false;
     $scope.hasTask = false;
 
-    $scope.activitiName = "My task form";
+    $scope.activitiName = "Task form";
     $scope.activitiFields ={};
 
-    $scope.bpmnFormDataList = bpmnService.listActiveTask().then(function(result) {
+    $scope.bpmnFormDataList = bpmnService.listActiveTaskForm().then(function(result) {
       if(result.data.length == 0){
         $scope.hasTask = false;
       }else {

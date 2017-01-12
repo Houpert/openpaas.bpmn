@@ -1,0 +1,49 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller='formTask'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <h4 class="modal-title" ng-bind-html="title"></h4>
+      </div>
+      <div class="modal-body ">
+        <div  ng-show="hasTask">
+          <table class="table" ng-show="!isShow">
+            <thead>
+              <tr>
+                <th>
+                  Process Name / Id
+                </th>
+                <th>
+                  Task Type
+                </th>
+                <th>
+                  Task Id
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat='data in bpmnDataList'>
+                  <td>
+                    {{data.processName}} : {{data.processId}}
+                  </td>
+                  <td>
+                    {{data.datatype}}
+                  </td>
+                  <td>
+                    {{data.idTask}}
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div ng-show="!hasTask">
+          <p>No task to do</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,14 +12,20 @@ angular.module('esn.bpmn')
       myBpmnListModal.show();
     };
 
-    var myFormModal = $modal({title: 'Activiti form task', scope: $scope, template: 'bpmnJs/views/formly.html', show: false});
-    $scope.showFormModal = function(id){
-      myFormModal.show();
+    var myFormTaskModal = $modal({title: 'Activiti form task', scope: $scope, template: 'bpmnJs/views/formly.html', show: false});
+    $scope.showFormTaskModal = function(id){
+      myFormTaskModal.show();
+    };
+
+    var myListTaskModal = $modal({title: 'Activiti list task', scope: $scope, template: 'bpmnJs/views/listTask.html', show: false});
+    $scope.showListTaskModal = function(id){
+      myListTaskModal.show();
     };
 
     $scope.closeModal = function() {
       myBpmnListModal.hide();
-      myFormModal.hide();
+      myFormTaskModal.hide();
+      myListTaskModal.hide();
     };
 
     var initDiagramXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><bpmn:definitions xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" id=\"Definitions_1\" targetNamespace=\"http://bpmn.io/schema/bpmn\"><bpmn:process id=\"Process_1\" isExecutable=\"false\" /><bpmndi:BPMNDiagram id=\"BPMNDiagram_1\"><bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1\" /></bpmndi:BPMNDiagram></bpmn:definitions>"
