@@ -18,7 +18,7 @@ function findCreatorFile(req, res) {
 
   filestore.find(query, function(err, meta) {
     if (err) {
-      return res.status(500).json({error: {code: 500, message: 'Error while searching file', details: err ? err.message : response.body}});
+      return res.status(500).json({error: {code: 500, message: 'Error while searching file', details: err ? err.message : res}});
     }
     if (!meta) {
       return res.status(500).json({error: {code: 500, message: 'Error while searching file, no files found'}});

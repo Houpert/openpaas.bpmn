@@ -3,7 +3,6 @@
 angular.module('esn.bpmn')
   .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, $modal, tokenService) {
 
-    $scope.listBpmnFile = listFile();
     $scope.userToken = tokenService.getToken();
 
     var myBpmnListModal = $modal({title: 'BPMN List', scope: $scope, template: 'bpmnJs/views/bpmnList.html', show: false});
@@ -28,7 +27,7 @@ angular.module('esn.bpmn')
       myListTaskModal.hide();
     };
 
-    var initDiagramXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><bpmn:definitions xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" id=\"Definitions_1\" targetNamespace=\"http://bpmn.io/schema/bpmn\"><bpmn:process id=\"Process_1\" isExecutable=\"false\" /><bpmndi:BPMNDiagram id=\"BPMNDiagram_1\"><bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1\" /></bpmndi:BPMNDiagram></bpmn:definitions>"
+    var initDiagramXml = '<?xml version=\"1.0\" encoding=\"UTF-8\"?><bpmn:definitions xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:bpmn=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" id=\"Definitions_1\" targetNamespace=\"http://bpmn.io/schema/bpmn\"><bpmn:process id=\"Process_1\" isExecutable=\"false\" /><bpmndi:BPMNDiagram id=\"BPMNDiagram_1\"><bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1\" /></bpmndi:BPMNDiagram></bpmn:definitions>';
 
     var $ = $window.jQuery,
         BpmnModeler = bpmnLoader.bpmnModeler();
@@ -94,10 +93,12 @@ angular.module('esn.bpmn')
       });
     }
 
+    $scope.listBpmnFile = listFile();
+
     $scope.deleteFile = function(id, index){
-      var result = bpmnService.deleteFile(id);
+      bpmnService.deleteFile(id);
       $scope.listBpmnFile.splice(index, 1);
-    }
+    };
 
     $scope.readServerFile = function(id){
       bpmnService.selectFile(id).then(function(result) {
@@ -106,39 +107,39 @@ angular.module('esn.bpmn')
       }, function(err) {
         alert(err);
       });
-    }
+    };
 
     $scope.saveXMLServer = function(){
       saveDiagram(function(err, xml){
         if (err) {
           alert('BPMN isn\'t initialized :'+err);
         } else {
-          var blob = new Blob([xml], {type: "text/xml"});
+          var blob = new Blob([xml], {type: 'text/xml'});
           var fileName = bpmnModeler.definitions.rootElements[0].id;
 
           var fileOfBlob = new File([blob], fileName);
           bpmnService.writeFile(fileOfBlob);
         }
       });
-    }
+    };
 
     $scope.activitiWebService = function(){
       saveDiagram(function(err, xml){
         if (err) {
           alert('BPMN isn\'t initialized :'+err);
         } else {
-          var blob = new Blob([xml], {type: "text/xml"});
+          var blob = new Blob([xml], {type: 'text/xml'});
           var fileName = bpmnModeler.definitions.rootElements[0].id;
 
           var fileOfBlob = new File([blob], fileName);
-          var result = bpmnService.activitiWebService(fileOfBlob);
+          bpmnService.activitiWebService(fileOfBlob);
         }
       });
-    }
+    };
 
     $scope.initDiagram = function(){
       initDiagram();
-    }
+    };
 
     $scope.saveXML = function(){
       saveDiagram(function(err, xml){
@@ -148,17 +149,17 @@ angular.module('esn.bpmn')
           if (saveAs) {
             var fileName = bpmnModeler.definitions.rootElements[0].id;
 
-            var file = new File([xml], fileName, {type: "text/plain"});
+            var file = new File([xml], fileName, {type: 'text/plain'});
             saveAs(file);
           }else{
               alert('Save file is not supported');
           }
         }
       });
-    }
+    };
 
     $scope.file_changed = function(element) {
-      var newXml = undefined;
+      var newXml;
 
       $scope.$apply(function(scope) {
          var fileXML = element.files[0];
@@ -170,6 +171,6 @@ angular.module('esn.bpmn')
         newXml = reader.readAsBinaryString(fileXML);
       });
       initDiagram();
-    }
+    };
 
 });

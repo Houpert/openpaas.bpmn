@@ -3,11 +3,11 @@
 angular.module('esn.bpmn')
   .controller('formTask', function($scope, bpmnService) {
 
-    $scope.activitiName = "Task list";
+    $scope.activitiName = 'Task list';
     $scope.activitiFields ={};
 
     $scope.bpmnDataList = bpmnService.listActiveTaskList().then(function(result) {
-      if(result.data.length == 0){
+      if(result.data.length === 0){
         $scope.hasTask = false;
       }else {
         $scope.hasTask = true;

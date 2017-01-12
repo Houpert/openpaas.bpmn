@@ -14,23 +14,23 @@ angular.module('esn.bpmn')
     var selectFile = function(id) {
         return $http.get('/api/files/'+id).then(function(response) {
           return response;
-        })
+        });
     };
 
     var deleteFile = function(id) {
         return $http.delete('/api/files/'+id).then(function(response) {
           return response;
-        })
+        });
     };
 
     var writeFile = function(file) {
       fileUploadService.get().addFile(file, true);
     };
 
-<!--ACTIVITI WEBSERVICE-->
+//ACTIVITI WEBSERVICE
 
     var activitiWebService = function(file) {
-      var uploadUrl = webServiceActivitiURL+'action/parse/execute'
+      var uploadUrl = webServiceActivitiURL+'action/parse/execute';
 
       var fd = new FormData();
       fd.append('file', file);
@@ -41,7 +41,7 @@ angular.module('esn.bpmn')
         alert('Process started : '+res.idNumber);
         return res;
       }).error(function(err){
-        alert('Error during the  execution : '+err.message)
+        alert('Error during the  execution : '+err.message);
         return err;
       });
     };
@@ -51,21 +51,21 @@ angular.module('esn.bpmn')
       return $http.get(listActiveBpmnUrl).then(function(response) {
         return response;
       });
-    }
+    };
 
     var listActiveTaskList = function(){
       var listActiveBpmnUrl = webServiceActivitiURL+'action/data';
       return $http.get(listActiveBpmnUrl).then(function(response) {
         return response;
       });
-    }
+    };
 
     var completeTask = function(values){
       var completeActiveTask = webServiceActivitiURL+'action/task/complet';
       return $http.post(completeActiveTask, JSON.stringify(values)).then(function(response) {
         return response;
       });
-    }
+    };
 
     return {
       deleteFile : deleteFile,

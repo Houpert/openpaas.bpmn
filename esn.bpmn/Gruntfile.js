@@ -12,12 +12,14 @@ module.exports = function(grunt) {
         transform: [ 'brfs' ]
       },
       all: {
+        ignores: ['bpmn-loader.js'],
         src: [
           'Gruntfile.js',
           'tasks/**/*.js',
           'test/**/**/*.js',
           'backend/**/*.js',
-          'frontend/js/**/*.js'
+          'frontend/js/**/*.js',
+          '!frontend/js/modules/bpmn-loader.js'
         ]
       }
     },

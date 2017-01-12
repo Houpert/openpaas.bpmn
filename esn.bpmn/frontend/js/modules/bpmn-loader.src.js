@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('esn.bpmn')
 
 .factory('bpmnLoader', function($http) {

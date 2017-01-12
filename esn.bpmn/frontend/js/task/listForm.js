@@ -6,11 +6,11 @@ angular.module('esn.bpmn')
     $scope.isShow = false;
     $scope.hasTask = false;
 
-    $scope.activitiName = "Task form";
+    $scope.activitiName = 'Task form';
     $scope.activitiFields ={};
 
     $scope.bpmnFormDataList = bpmnService.listActiveTaskForm().then(function(result) {
-      if(result.data.length == 0){
+      if(result.data.length === 0){
         $scope.hasTask = false;
       }else {
         $scope.hasTask = true;
@@ -23,7 +23,7 @@ angular.module('esn.bpmn')
 
     $scope.selectTaskInformation = function(data){
       return data[data.length-1].templateOptions.placeholder;
-    }
+    };
 
     /*The form model*/
     $scope.activiti = {
@@ -33,7 +33,7 @@ angular.module('esn.bpmn')
     $scope.selectForm = function(data){
       $scope.activitiFields = data.form;
       $scope.isShow = true;
-    }
+    };
 
     $scope.onSubmit = function(id){
       bpmnService.completeTask($scope.activiti).then(function(result) {
@@ -41,7 +41,7 @@ angular.module('esn.bpmn')
         $scope.closeModal();
         return result;
       }, function(err) {
-        alert('Error during the task execution : '+err.data.message)
+        alert('Error during the task execution : '+err.data.message);
       });
     };
 });
