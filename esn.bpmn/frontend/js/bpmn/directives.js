@@ -23,7 +23,7 @@ angular.module('esn.bpmn')
   .directive('addButton', ['dynamicDirectiveService', function(dynamicDirectiveService) {
     return {
       restrict: 'A',
-      link: function (scope) {
+      link: function(scope) {
         var dir2 = new dynamicDirectiveService.DynamicDirective(
           function(scope) {return true;},
           'dir2'

@@ -19,10 +19,13 @@
   "smarttabs": true,
   "white": false,
   "expr": true,
+  "devel":true,
   "globals": {
     "angular": false,
     "jQuery": false,
     "$": false,
+    "saveAs":false,
+    "File":false,
     "after": false,
     "afterEach": false,
     "angular": false,
@@ -35,4 +38,3 @@
     "it": false
   }
 }
-

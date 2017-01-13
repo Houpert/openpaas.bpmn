@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc',
         ignores: [],
-        transform: [ 'brfs' ]
+        transform: ['brfs']
       },
       all: {
         ignores: ['bpmn-loader.js'],

@@ -3,13 +3,13 @@
 var logger, core, filestore;
 
 function findCreatorFile(req, res) {
-  if(!req.user._id){
+  if (!req.user._id) {
     return res.status(400).json({error: {code: 400, message: 'Bad Request', details: 'The user isn\'t connected'}});
   }
 
   var query = {
-    metadata : {
-      creator : {
+    metadata: {
+      creator: {
         objectType: 'user',
         id: req.user._id
       }

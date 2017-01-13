@@ -7,10 +7,10 @@ angular.module('esn.bpmn')
     $scope.hasTask = false;
 
     $scope.activitiName = 'Task form';
-    $scope.activitiFields ={};
+    $scope.activitiFields = {};
 
     $scope.bpmnFormDataList = bpmnService.listActiveTaskForm().then(function(result) {
-      if(result.data.length === 0){
+      if (result.data.length === 0) {
         $scope.hasTask = false;
       }else {
         $scope.hasTask = true;
@@ -21,27 +21,26 @@ angular.module('esn.bpmn')
       alert(err);
     });
 
-    $scope.selectTaskInformation = function(data){
-      return data[data.length-1].templateOptions.placeholder;
+    $scope.selectTaskInformation = function(data) {
+      return data[data.length - 1].templateOptions.placeholder;
     };
 
-    /*The form model*/
-    $scope.activiti = {
-    };
-
-
-    $scope.selectForm = function(data){
+    $scope.selectForm = function(data) {
       $scope.activitiFields = data.form;
       $scope.isShow = true;
     };
 
-    $scope.onSubmit = function(id){
-      bpmnService.completeTask($scope.activiti).then(function(result) {
-        alert('Task Complete');
-        $scope.closeModal();
-        return result;
-      }, function(err) {
-        alert('Error during the task execution : '+err.data.message);
-      });
+    $scope.onSubmit = function(id) {
+      if ($scope.activiti !== undefined) {
+
+        bpmnService.completeTask($scope.activiti).then(function(result) {
+          alert('Task Complete');
+          $scope.closeModal();
+          return result;
+        }, function(err) {
+          alert('Error during the task execution : ' + err.data.message);
+        });
+      }
     };
-});
+  }
+);

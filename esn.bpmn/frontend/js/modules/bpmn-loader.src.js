@@ -20,9 +20,9 @@ angular.module('esn.bpmn')
   };
 
   return {
-    bpmnModeler : bpmnModeler,
-    bpmnPropertiesPanel : bpmnPropertiesPanel,
-    bpmnPropertiesPanelProvider : bpmnPropertiesPanelProvider,
-    camundaModdleDescriptor : camundaModdleDescriptor
+    bpmnModeler:bpmnModeler,
+    bpmnPropertiesPanel:bpmnPropertiesPanel,
+    bpmnPropertiesPanelProvider:bpmnPropertiesPanelProvider,
+    camundaModdleDescriptor:camundaModdleDescriptor
   };
 });
