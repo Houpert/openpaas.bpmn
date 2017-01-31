@@ -9,7 +9,7 @@ angular.module('esn.bpmn')
     $scope.activitiName = 'Task form';
     $scope.activitiFields = {};
 
-    $scope.bpmnFormDataList = bpmnService.listActiveTaskForm().then(function(result) {
+    $scope.bpmnFormDataList = bpmnService.listActiveTaskForm($scope.userInfo).then(function(result) {
       if (result.data.length === 0) {
         $scope.hasTask = false;
       }else {

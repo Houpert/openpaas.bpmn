@@ -3,6 +3,7 @@
 angular.module('esn.bpmn')
   .factory('bpmnService', function($http, fileUploadService) {
     //TODO manage return file list server
+    var openPaasAPI = 'http://localhost:8080/api/';
     var webServiceActivitiURL = 'http://10.31.0.114:8090/';
 
     var listFile = function() {
@@ -46,11 +47,22 @@ angular.module('esn.bpmn')
       });
     };
 
-    var listActiveTaskForm = function() {
-      var listActiveBpmnUrl = webServiceActivitiURL + 'action/task/list';
-      return $http.get(listActiveBpmnUrl).then(function(response) {
-        return response;
+    var listActiveTaskForm = function(userInfo) {
+      var listActiveBpmnUrl = webServiceActivitiURL + 'action/task/list/email';
+
+      var email = userInfo.preferredEmail;
+      var fd = new FormData();
+      fd.append('email', email);
+
+      return $http.post(listActiveBpmnUrl, fd, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+      }).success(function(res) {
+        return res;
+      }).error(function(err) {
+        return err;
       });
+
     };
 
     var listActiveTaskList = function() {
@@ -67,6 +79,14 @@ angular.module('esn.bpmn')
       });
     };
 
+    var userInfo = function(){
+      //TODO user OpenPaas object here ?
+      var userApiPath = openPaasAPI+'user';
+      return $http.get(userApiPath).then(function(response) {
+        return response.data;
+      });
+    }
+
     return {
       deleteFile:deleteFile,
       listFile:listFile,
@@ -75,6 +95,7 @@ angular.module('esn.bpmn')
       activitiWebService:activitiWebService,
       listActiveTaskForm:listActiveTaskForm,
       listActiveTaskList:listActiveTaskList,
-      completeTask:completeTask
+      completeTask:completeTask,
+      userInfo:userInfo
     };
   });
