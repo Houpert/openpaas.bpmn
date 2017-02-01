@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, $modal, tokenService) {
+  .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, tokenService) {
 
     $scope.userToken = tokenService.getToken();
     $scope.userInfo = userInfo();
@@ -54,7 +54,7 @@ angular.module('esn.bpmn')
     });
 
     function userInfo() {
-      return bpmnService.userInfo().then(function(result) {
+      return userService.userInfo().then(function(result) {
         $scope.userInfo = result;
         return result;
       }, function(err) {
@@ -96,7 +96,7 @@ angular.module('esn.bpmn')
     }
 
     function listFile() {
-      return bpmnService.listFile().then(function(result) {
+      return userService.listFile().then(function(result) {
         $scope.listBpmnFile = result.data;
         return result.data;
       }, function(err) {
@@ -107,12 +107,12 @@ angular.module('esn.bpmn')
     $scope.listBpmnFile = listFile();
 
     $scope.deleteFile = function(id, index) {
-      bpmnService.deleteFile(id);
+      userService.deleteFile(id);
       $scope.listBpmnFile.splice(index, 1);
     };
 
     $scope.readServerFile = function(id) {
-      bpmnService.selectFile(id).then(function(result) {
+      userService.selectFile(id).then(function(result) {
         importNewDiagram(result.data);
         $scope.closeModal();
       }, function(err) {
@@ -129,7 +129,7 @@ angular.module('esn.bpmn')
           var fileName = bpmnModeler.definitions.rootElements[0].id;
 
           var fileOfBlob = new File([blob], fileName);
-          bpmnService.writeFile(fileOfBlob);
+          userService.writeFile(fileOfBlob);
         }
       });
     };
