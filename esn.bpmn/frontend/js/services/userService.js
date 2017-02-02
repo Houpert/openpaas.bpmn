@@ -2,8 +2,6 @@
 
 angular.module('esn.bpmn')
   .factory('userService', function($http, fileUploadService) {
-    //TODO manage return file list server
-    var openPaasAPI = 'http://localhost:8080/api/';
 
     var listFile = function() {
       return $http.get('/bpmnJs/api/myfiles').then(function(response) {
@@ -27,14 +25,11 @@ angular.module('esn.bpmn')
       fileUploadService.get().addFile(file, true);
     };
 
-    var userInfo = function(){
-      //TODO user OpenPaas object here ?
-      var userApiPath = openPaasAPI+'user';
-      return $http.get(userApiPath).then(function(response) {
-        console.log(response.data);
+    var userInfo = function() {
+      return $http.get('/api/user/').then(function(response) {
         return response.data;
       });
-    }
+    };
 
     return {
       deleteFile:deleteFile,

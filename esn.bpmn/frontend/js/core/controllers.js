@@ -4,7 +4,6 @@ angular.module('esn.bpmn')
   .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, tokenService) {
 
     $scope.userToken = tokenService.getToken();
-    $scope.userInfo = userInfo();
 
     var myBpmnListModal = $modal({title: 'BPMN List', scope: $scope, template: 'bpmnJs/views/bpmnList.html', show: false});
     $scope.showModal = function(id) {
@@ -62,6 +61,7 @@ angular.module('esn.bpmn')
       });
     }
 
+    $scope.userInfo = userInfo();
 
     function importNewDiagram(importXml) {
       openDiagram(importXml);
