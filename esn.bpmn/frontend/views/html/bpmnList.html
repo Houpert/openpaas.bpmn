@@ -8,22 +8,14 @@
         <table class="table">
           <thead>
             <tr>
-              <th>
-                Id BPMN
-              </th>
-              <th>
-                Open
-              </th>
-              <th>
-                Delete
-              </th>
+              <th>Id BPMN</th>
+              <th>Open</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
               <tr ng-repeat='id in listBpmnFile'>
-                <td>
-                  {{id}}
-                </td>
+                <td>{{id}}</td>
                 <td>
                   <a ng-click="readServerFile(id);" href title="Open">
                     <span class="glyphicon glyphicon-open"/>

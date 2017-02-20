@@ -1,9 +1,16 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .controller('bpmnTask', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, tokenService, notificationFactory) {
+  .controller('bpmnTask', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, notificationFactory) {
 
-    $scope.userToken = tokenService.getToken();
+    $scope.userToken = userService.getToken();
+    $scope.userInfo = userService.userInfo();
+
+    $scope.isShow = false;
+    $scope.hasTask = false;
+
+    $scope.activitiName = 'Task form';
+    $scope.activitiFields = {};
 
     function refreshFormDataList() {
       return bpmnService.listActiveTaskForm($scope.userInfo).then(function(result) {
@@ -19,16 +26,6 @@ angular.module('esn.bpmn')
       });
     }
 
-    function userInfo() {
-      return userService.userInfo().then(function(result) {
-        $scope.userInfo = result;
-        return result;
-      }, function(err) {
-        notificationFactory.weakError('Error', err);
-      });
-    }
-
-    $scope.userInfo = userInfo();
     $scope.bpmnFormDataList = refreshFormDataList();
 
     var myListTaskModal = $modal({title: 'Activiti list task', scope: $scope, template: 'bpmnJs/views/html/listTask.html', show: false});
@@ -39,12 +36,6 @@ angular.module('esn.bpmn')
     $scope.closeModal = function() {
       myListTaskModal.hide();
     };
-
-    $scope.isShow = false;
-    $scope.hasTask = false;
-
-    $scope.activitiName = 'Task form';
-    $scope.activitiFields = {};
 
     $scope.selectTaskInformation = function(data) {
       return data[data.length - 1].templateOptions.placeholder;
@@ -73,5 +64,5 @@ angular.module('esn.bpmn')
         });
       }
     };
-
-  });
+  }
+);

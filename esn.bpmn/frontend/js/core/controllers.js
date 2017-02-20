@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, tokenService, notificationFactory) {
+  .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, notificationFactory) {
 
-    $scope.userToken = tokenService.getToken();
+    $scope.userToken = userService.getToken();
+    $scope.userInfo = userService.userInfo();
 
     var myBpmnListModal = $modal({title: 'BPMN List', scope: $scope, template: 'bpmnJs/views/html/bpmnList.html', show: false});
     $scope.showModal = function(id) {
@@ -52,17 +53,6 @@ angular.module('esn.bpmn')
       }
     });
 
-    function userInfo() {
-      return userService.userInfo().then(function(result) {
-        $scope.userInfo = result;
-        return result;
-      }, function(err) {
-        notificationFactory.weakError('Error', err);
-      });
-    }
-
-    $scope.userInfo = userInfo();
-
     function importNewDiagram(importXml) {
       openDiagram(importXml);
     }
@@ -73,14 +63,11 @@ angular.module('esn.bpmn')
 
     function openDiagram(xml) {
       bpmnModeler.importXML(xml, function(err) {
-
         if (err) {
           container
             .removeClass('with-diagram')
             .addClass('with-error');
-
           container.find('.error pre').text(err.message);
-          console.error(err);
         } else {
           container
             .removeClass('with-error')
@@ -134,16 +121,16 @@ angular.module('esn.bpmn')
       });
     };
 
-    $scope.activitiWebService = function() {
+    $scope.activitiExecuteBpmn = function() {
       saveDiagram(function(err, xml) {
         if (err) {
-          notificationFactory.weakError('Error', 'BPMN isn\'t initialized :' + err);
+          notificationFactory.weakError('Error', 'BPMN is not initialized : ' + err);
         } else {
           var blob = new Blob([xml], {type: 'text/xml'});
           var fileName = bpmnModeler.definitions.rootElements[0].id;
 
           var fileOfBlob = new File([blob], fileName);
-          bpmnService.activitiWebService(fileOfBlob);
+          bpmnService.activitiExecuteBpmn(fileOfBlob);
         }
       });
     };
@@ -155,7 +142,7 @@ angular.module('esn.bpmn')
     $scope.saveXML = function() {
       saveDiagram(function(err, xml) {
         if (err) {
-          notificationFactory.weakError('Error', 'BPMN isn\'t initialized');
+          notificationFactory.weakError('Error', 'BPMN is not initialized : ' + err);
         } else {
           if (saveAs) {
             var fileName = bpmnModeler.definitions.rootElements[0].id;

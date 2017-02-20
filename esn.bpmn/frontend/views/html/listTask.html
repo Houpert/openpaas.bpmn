@@ -9,34 +9,18 @@
           <table class="table" ng-show="!isShow">
             <thead>
               <tr>
-                <th>
-                  Process Name / Id
-                </th>
-                <th>
-                  Task Type
-                </th>
-                <th>
-                  Task Id
-                </th>
-                <th>
-                  Assignee
-                </th>
+                <th>Process Name / Id</th>
+                <th>Task Type</th>
+                <th>Task Id</th>
+                <th>Assignee</th>
               </tr>
             </thead>
             <tbody>
                 <tr ng-repeat='data in bpmnDataList'>
-                  <td>
-                    {{data.processName}} : {{data.processId}}
-                  </td>
-                  <td>
-                    {{data.type}}
-                  </td>
-                  <td>
-                    {{data.idTask}}
-                  </td>
-                  <td>
-                    {{data.assignee}}
-                  </td>
+                  <td>{{data.processName}} : {{data.processId}}</td>
+                  <td>{{data.type}}</td>
+                  <td>{{data.idTask}}</td>
+                  <td>{{data.assignee}}</td>
                 </tr>
             </tbody>
           </table>

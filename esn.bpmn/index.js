@@ -42,7 +42,6 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
         '../components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
         'app.js',
         'services/bpmnServices.js',
-        'services/token.js',
         'services/userService.js',
         'core/directives.js',
         'core/controllers.js',

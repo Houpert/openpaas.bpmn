@@ -1,3 +1,4 @@
+<!-- TODO REMOVE AFTER REVIEW C2NET (With views/html/formly.html) -->
 <div class="modal" tabindex="-1" role="dialog" ng-controller='formController'>
   <div class="modal-dialog">
     <div class="modal-content">
@@ -9,19 +10,13 @@
           <table class="table" ng-show="!isShow">
             <thead>
               <tr>
-                <th>
-                  Task Name
-                </th>
-                <th>
-                  Select Task
-                </th>
+                <th>Task Name</th>
+                <th>Select Task</th>
               </tr>
             </thead>
             <tbody>
                 <tr ng-repeat='data in bpmnFormDataList'>
-                  <td>
-                    {{selectTaskInformation(data.form)}}
-                  </td>
+                  <td>{{selectTaskInformation(data.form)}}</td>
                   <td>
                     <a ng-click="selectForm(data);" href title="Open">
                       <span class="glyphicon glyphicon-open"/>

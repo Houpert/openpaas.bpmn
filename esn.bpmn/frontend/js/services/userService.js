@@ -1,23 +1,33 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .factory('userService', function($http, fileUploadService) {
+  .factory('userService', function($http, tokenAPI, fileUploadService) {
+
+    var listFileUrl = '/bpmnJs/api/myfiles';
+    var apiFileUrl = '/api/files/';
+    var apiUserUrl = '/api/user/';
 
     var listFile = function() {
-      return $http.get('/bpmnJs/api/myfiles').then(function(response) {
+      return $http.get(listFileUrl).then(function(response) {
         return response;
       });
     };
 
     var selectFile = function(id) {
-      return $http.get('/api/files/' + id).then(function(response) {
+      return $http.get(apiFileUrl + id).then(function(response) {
         return response;
       });
     };
 
     var deleteFile = function(id) {
-      return $http.delete('/api/files/' + id).then(function(response) {
+      return $http.delete(apiFileUrl + id).then(function(response) {
         return response;
+      });
+    };
+
+    var userInfo = function() {
+      return $http.get(apiUserUrl).then(function(response) {
+        return response.data;
       });
     };
 
@@ -25,17 +35,18 @@ angular.module('esn.bpmn')
       fileUploadService.get().addFile(file, true);
     };
 
-    var userInfo = function() {
-      return $http.get('/api/user/').then(function(response) {
+    var getToken = function() {
+      return tokenAPI.getNewToken().then(function(response) {
         return response.data;
       });
     };
 
     return {
       deleteFile:deleteFile,
+      getToken:getToken,
       listFile:listFile,
-      writeFile:writeFile,
       selectFile:selectFile,
-      userInfo:userInfo
+      userInfo:userInfo,
+      writeFile:writeFile
     };
   });

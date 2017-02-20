@@ -1,5 +1,6 @@
 'use strict';
 
+//TODO REMOVE AFTER REVIEW C2NET (With views/html/formly.html)
 angular.module('esn.bpmn')
   .controller('formController', function($scope, bpmnService, notificationFactory) {
 

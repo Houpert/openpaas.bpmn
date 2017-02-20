@@ -4,14 +4,18 @@ angular.module('esn.bpmn')
   .factory('bpmnService', function($http, fileUploadService, notificationFactory) {
     //TODO manage config return file list server
     var webServiceActivitiURL = 'http://10.31.0.114:8090/';
+    var webServiceActivitiExecuteBpmnURL = 'action/parse/execute';
+    var webServiceActivitiTaskForm = 'action/task/list';
+    var webServiceActivitiTaskList = 'action/data';
+    var webServiceActivitiTaskComplete = 'action/task/complet';
 
     //ACTIVITI WEBSERVICE
-    var activitiWebService = function(file) {
-      var uploadUrl = webServiceActivitiURL + 'action/parse/execute';
+    var activitiExecuteBpmn = function(file) {
+      var webServiceUrl = webServiceActivitiURL + webServiceActivitiExecuteBpmnURL;
+      var formData = new FormData();
+      formData.append('file', file);
 
-      var fd = new FormData();
-      fd.append('file', file);
-      return $http.post(uploadUrl, fd, {
+      return $http.post(webServiceUrl, formData, {
         transformRequest: angular.identity,
         headers: {'Content-Type': undefined}
       }).success(function(res) {
@@ -24,13 +28,12 @@ angular.module('esn.bpmn')
     };
 
     var listActiveTaskForm = function(userInfo) {
-      var listActiveBpmnUrl = webServiceActivitiURL + 'action/task/list';
+      var webServiceUrl = webServiceActivitiURL + webServiceActivitiTaskForm;
+      var formData = new FormData();
 
-      var email = userInfo.preferredEmail;
-      var fd = new FormData();
-      fd.append('email', email);
+      formData.append('email', userInfo.preferredEmail);
 
-      return $http.post(listActiveBpmnUrl, fd, {
+      return $http.post(webServiceUrl, formData, {
         transformRequest: angular.identity,
         headers: {'Content-Type': undefined}
       }).success(function(res) {
@@ -41,21 +44,21 @@ angular.module('esn.bpmn')
     };
 
     var listActiveTaskList = function() {
-      var listActiveBpmnUrl = webServiceActivitiURL + 'action/data';
-      return $http.get(listActiveBpmnUrl).then(function(response) {
+      var webServiceUrl = webServiceActivitiURL + webServiceActivitiTaskList;
+      return $http.get(webServiceUrl).then(function(response) {
         return response;
       });
     };
 
     var completeTask = function(values) {
-      var completeActiveTask = webServiceActivitiURL + 'action/task/complet';
-      return $http.post(completeActiveTask, JSON.stringify(values)).then(function(response) {
+      var webServiceUrl = webServiceActivitiURL + webServiceActivitiTaskComplete;
+      return $http.post(webServiceUrl, JSON.stringify(values)).then(function(response) {
         return response;
       });
     };
 
     return {
-      activitiWebService:activitiWebService,
+      activitiExecuteBpmn:activitiExecuteBpmn,
       listActiveTaskForm:listActiveTaskForm,
       listActiveTaskList:listActiveTaskList,
       completeTask:completeTask
