@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .controller('formTask', function($scope, bpmnService) {
+  .controller('formTask', function($scope, bpmnService, notificationFactory) {
 
     $scope.activitiName = 'Task list';
     $scope.activitiFields = {};
@@ -15,7 +15,7 @@ angular.module('esn.bpmn')
       $scope.bpmnDataList = result.data;
       return result.data;
     }, function(err) {
-      alert(err);
+      notificationFactory.weakError('Error', err);
     });
   }
 );

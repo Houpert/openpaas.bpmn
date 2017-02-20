@@ -1,0 +1,56 @@
+<body ng-app='esn.bpmn'  ng-controller='bpmnTask'>
+
+
+<div class="taskManager">
+  <div class="row">
+    <div ng-show="hasTask">
+      <div class="modal-header" ng-show="!isShow">
+        <h4 class="modal-title">Task Manager</h4>
+      </div>
+      <table class="table table-striped table-hover table-sm table-responsive" ng-show="!isShow">
+        <thead class="thead-default">
+          <tr>
+            <th>Process Name</th>
+            <th>Task Name</th>
+            <th>Execute</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='data in bpmnFormDataList'>
+              <td>{{data.processName}}</td>
+              <td>{{selectTaskInformation(data.form)}}</td>
+              <td>
+                <a ng-click="selectForm(data);" href title="Open">
+                  <span class="glyphicon glyphicon-open"/>
+                </a>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <div class="well form-container" ng-show="isShow">
+        <legend>Task Form</legend>
+        <form name="activitiName" novalidate>
+          <formly-form model="activiti" fields="activitiFields">
+            <br>
+            <button type="submit" class="btn btn-primary submit-button pull-right second-submit-button" ng-click="onSubmit(activiti)">Submit</button>
+            <button type="submit" class="btn btn-secondary pull-right" ng-click="cancel()">Cancel</button>
+          </formly-form>
+        </form>
+      </div>
+    </div>
+
+    <div ng-show="!hasTask">
+      <h2>No task to do</h2>
+    </div>
+  </div>
+
+  <ul class="buttons">
+    <li class="bpmn-icon-size">
+    <a ng-click="showListTaskModal()" href title="List">
+        <span class="glyphicon glyphicon-list-alt"/> List Task
+      </a>
+    </li>
+  </ul>
+</div>
+</body>

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .factory('bpmnService', function($http, fileUploadService) {
-    //TODO manage return file list server
+  .factory('bpmnService', function($http, fileUploadService, notificationFactory) {
+    //TODO manage config return file list server
     var webServiceActivitiURL = 'http://10.31.0.114:8090/';
 
     //ACTIVITI WEBSERVICE
@@ -15,16 +15,16 @@ angular.module('esn.bpmn')
         transformRequest: angular.identity,
         headers: {'Content-Type': undefined}
       }).success(function(res) {
-        alert('Process started : ' + res.idNumber);
+        notificationFactory.weakInfo('Execution', 'Process started : ' + res.idNumber);
         return res;
       }).error(function(err) {
-        alert('Error during the  execution : ' + err.message);
+        notificationFactory.weakError('Error', 'Error during the  execution : ' + err.message);
         return err;
       });
     };
 
     var listActiveTaskForm = function(userInfo) {
-      var listActiveBpmnUrl = webServiceActivitiURL + 'action/task/list/email';
+      var listActiveBpmnUrl = webServiceActivitiURL + 'action/task/list';
 
       var email = userInfo.preferredEmail;
       var fd = new FormData();

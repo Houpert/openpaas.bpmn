@@ -11,16 +11,21 @@ angular.module('esn.bpmn', [
   '$stateProvider',
   'dynamicDirectiveServiceProvider',
   function($stateProvider, dynamicDirectiveServiceProvider) {
-    //var bpmnJs = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'application-menu-hello-world', {priority: 28});
     var bpmnJs = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'application-menu-cnet', {priority: 28});
 
     dynamicDirectiveServiceProvider.addInjection('esn-application-menu', bpmnJs);
 
     $stateProvider
-      .state('bpmn', {
+      .state('bpmnEditor', {
         url: '/bpmn',
-        templateUrl: '/bpmnJs/views/bpmn.html',
+        templateUrl: '/bpmnJs/views/editor',
         controller: 'bpmnController'
+      })
+
+      .state('bpmnTask', {
+        url: '/bpmn/task',
+        templateUrl: '/bpmnJs/views/task',
+        controller: 'bpmnTask'
       })
       ;
   }

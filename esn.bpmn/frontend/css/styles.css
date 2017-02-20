@@ -13,3 +13,33 @@
 .bpmn-icon-size{
   font-size: 16px;
 }
+
+.taskManager{
+  margin-top:115px;
+  width: 50%;
+}
+
+.bpmn-list-subheader-title h2{
+  color: white;
+}
+
+.second-submit-button{
+  margin-left: 5px;
+}
+
+.my-form-label label{
+  font-weight: bold;
+  margin-left: -5px;
+}
+
+.my-form-label input {
+  width: 100%;
+  border-bottom : 1px solid #e0e0e0;
+  border-bottom-color : #f44336;
+}
+
+.my-form-label select {
+  width: 100%;
+  border-bottom : 1px solid #e0e0e0;
+  border-bottom-color : #f44336;
+}

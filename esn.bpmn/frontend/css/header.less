@@ -1,0 +1,42 @@
+bpmn-list-subheader {
+  width: 100%;
+}
+
+#sub-header {
+  .bpmn-list-subheader {
+    .all-centered;
+    height: 100%;
+    color: @m-white;
+
+    .bpmn-list-subheader-title {
+      padding-left: 0;
+
+      h2 {
+        font-size: 15px;
+        color: @m-white;
+        margin: 0 0 0 15px;
+        font-weight: 900;
+        text-transform: uppercase;
+
+        small {
+          display: block;
+          text-transform: none;
+          margin-top: 3px;
+          color: @m-white;
+          font-weight: bold;
+          line-height: 140%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  #sub-header {
+    .bpmn-list-subheader .bpmns-list-toolbar {
+      .bpmns-search {
+        width: auto;
+      }
+    }
+  }
+}

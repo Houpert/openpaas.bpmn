@@ -135,7 +135,7 @@ a:link {
 .djs-properties-panel {
   background-color: #f8f8f8;
   position: relative;
-  margin-top: 75px;
+  margin-top: 115px;
 }
 /* line 20, node_modules/bpmn-js-properties-panel/styles/properties.less */
 .djs-properties-panel:empty {

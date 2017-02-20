@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .controller('formController', function($scope, bpmnService) {
+  .controller('formController', function($scope, bpmnService, notificationFactory) {
 
     $scope.isShow = false;
     $scope.hasTask = false;
@@ -18,7 +18,7 @@ angular.module('esn.bpmn')
       $scope.bpmnFormDataList = result.data;
       return result.data;
     }, function(err) {
-      alert(err);
+      notificationFactory.weakError('Error', err);
     });
 
     $scope.selectTaskInformation = function(data) {
@@ -34,11 +34,11 @@ angular.module('esn.bpmn')
       if ($scope.activiti !== undefined) {
 
         bpmnService.completeTask($scope.activiti).then(function(result) {
-          alert('Task Complete');
+          notificationFactory.weakInfo('success', 'Task complete with id ' + $scope.activiti.taskId);
           $scope.closeModal();
           return result;
         }, function(err) {
-          alert('Error during the task execution : ' + err.data.message);
+          notificationFactory.weakError('Error', 'Error during the task execution : ' + err.data.message);
         });
       }
     };

@@ -1,12 +1,3 @@
-<head>
-  <script type="text/javascript" src="../bpmnJs/components/file-saver/FileSaver.min.js"/>
-
-  <link href="../bpmnJs/css/app-bpmn.css" rel="stylesheet">
-  <link href="../bpmnJs/css/bpmn-embeded.css" rel="stylesheet">
-  <link href="../bpmnJs/css/diagram-js.css" rel="stylesheet">
-  <link href="../bpmnJs/css/styles.css" rel="stylesheet">
-</head>
-
 <body ng-app='esn.bpmn'  ng-controller='bpmnController'>
 
 
@@ -15,17 +6,6 @@
     <div class="message intro">
       <div class="note">
         Drop BPMN diagram from your desktop or <a id="js-create-diagram" ng-click="initDiagram()">create a new diagram</a> to get started.
-      </div>
-    </div>
-
-    <div class="message error">
-        <div class="note">
-      <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
-
-        <div class="details">
-          <span>cause of the problem</span>
-          <pre></pre>
-        </div>
       </div>
     </div>
 
@@ -63,6 +43,7 @@
       </a>
     </li>
 
+
     <li class="bpmn-icon-size">
     <a ng-click="showFormTaskModal(userInfo)" href title="Form">
         <span class="glyphicon glyphicon-edit"/> Task Form
@@ -74,6 +55,5 @@
         <span class="glyphicon glyphicon-list-alt"/> List Task
       </a>
     </li>
-
 </ul>
 </body>
