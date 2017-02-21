@@ -4,7 +4,17 @@ angular.module('esn.bpmn')
   .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, notificationFactory) {
 
     $scope.userToken = userService.getToken();
-    $scope.userInfo = userService.userInfo();
+
+    function userInfo() {
+      return userService.userInfo().then(function(result) {
+        $scope.userInfo = result;
+        return result;
+      }, function(err) {
+        notificationFactory.weakError('Error', err);
+      });
+    }
+
+    $scope.userInfo = userInfo();
 
     var myBpmnListModal = $modal({title: 'BPMN List', scope: $scope, template: 'bpmnJs/views/html/bpmnList.html', show: false});
     $scope.showModal = function(id) {
@@ -117,6 +127,7 @@ angular.module('esn.bpmn')
 
           var fileOfBlob = new File([blob], fileName);
           userService.writeFile(fileOfBlob);
+          notificationFactory.weakInfo('Save', 'Process ' + fileName + ' has been save');
         }
       });
     };

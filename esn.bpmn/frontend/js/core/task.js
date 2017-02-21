@@ -4,13 +4,23 @@ angular.module('esn.bpmn')
   .controller('bpmnTask', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, notificationFactory) {
 
     $scope.userToken = userService.getToken();
-    $scope.userInfo = userService.userInfo();
 
     $scope.isShow = false;
     $scope.hasTask = false;
 
     $scope.activitiName = 'Task form';
     $scope.activitiFields = {};
+
+    function userInfo() {
+      return userService.userInfo().then(function(result) {
+        $scope.userInfo = result;
+        return result;
+      }, function(err) {
+        notificationFactory.weakError('Error', err);
+      });
+    }
+
+    $scope.userInfo = userInfo();
 
     function refreshFormDataList() {
       return bpmnService.listActiveTaskForm($scope.userInfo).then(function(result) {
