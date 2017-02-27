@@ -16,7 +16,7 @@
 
 .taskManager{
   margin-top:115px;
-  width: 50%;
+  width: 95%;
 }
 
 .bpmn-list-subheader-title h2{
@@ -46,4 +46,12 @@
 
 .sub-menu h2 {
   color : #ffffff;
+}
+
+.control-label{
+    font-weight: bold;;
+}
+
+.table-hover{
+  background: #e2e2e2
 }
