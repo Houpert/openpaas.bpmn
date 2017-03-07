@@ -3,6 +3,8 @@
 angular.module('esn.bpmn')
   .controller('bpmnController', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, notificationFactory) {
 
+    $scope.selectedTab = 'editor';
+
     $scope.userToken = userService.getToken();
 
     function userInfo() {
@@ -22,11 +24,6 @@ angular.module('esn.bpmn')
       myBpmnListModal.show();
     };
 
-    var myFormTaskModal = $modal({title: 'Activiti form task', scope: $scope, template: 'bpmnJs/views/html/formly.html', show: false});
-    $scope.showFormTaskModal = function(id) {
-      myFormTaskModal.show();
-    };
-
     var myListTaskModal = $modal({title: 'Activiti list task', scope: $scope, template: 'bpmnJs/views/html/listTask.html', show: false});
     $scope.showListTaskModal = function(id) {
       myListTaskModal.show();
@@ -34,7 +31,6 @@ angular.module('esn.bpmn')
 
     $scope.closeModal = function() {
       myBpmnListModal.hide();
-      myFormTaskModal.hide();
       myListTaskModal.hide();
     };
 

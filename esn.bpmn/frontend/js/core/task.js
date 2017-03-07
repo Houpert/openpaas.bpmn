@@ -2,6 +2,7 @@
 
 angular.module('esn.bpmn')
   .controller('bpmnTask', function($scope, $window, $http, bpmnLoader, bpmnService, userService, $modal, notificationFactory) {
+    $scope.selectedTab = 'task';
 
     $scope.userToken = userService.getToken();
 

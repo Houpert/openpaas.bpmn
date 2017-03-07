@@ -3,24 +3,16 @@
   background: #DDD;
   border: solid 1px #666;
   display: inline-block;
-  padding: 5px;
+  padding: 4px;
 }
 
 .buttons a{
   opacity: inherit;
 }
 
-.bpmn-icon-size{
-  font-size: 16px;
-}
-
 .taskManager{
   margin-top:115px;
-  width: 95%;
-}
-
-.bpmn-list-subheader-title h2{
-  color: white;
+  width: 75%;
 }
 
 .second-submit-button{
@@ -35,23 +27,41 @@
 .my-form-label input {
   width: 100%;
   border-bottom : 1px solid #e0e0e0;
-  border-bottom-color : #f44336;
 }
 
 .my-form-label select {
   width: 100%;
   border-bottom : 1px solid #e0e0e0;
-  border-bottom-color : #f44336;
 }
 
-.sub-menu h2 {
-  color : #ffffff;
-}
 
 .control-label{
-    font-weight: bold;;
+    font-weight: bold;
 }
 
-.table-hover{
-  background: #e2e2e2
+.table-shadow{
+  background-color : #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-container{
+  background-color : #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-container input{
+  padding: 5px;
+}
+
+.glyphicon-menu{
+  padding-right: 3px
+}
+
+.bpmn-list-subheader-title h2{
+  color: white;
+}
+
+.selected{
+  color: white;
+  text-decoration: underline;
 }
