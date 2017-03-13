@@ -354,7 +354,7 @@ svg.new-parent {
 
   background-color: #FEFEFE;
   box-shadow: 0 0 2px 1px #FEFEFE;
-
+  color : black;
   pointer-events: all;
 }
 

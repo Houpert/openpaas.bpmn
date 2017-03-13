@@ -1,0 +1,22 @@
+.my-card#home
+  .row.margin-card.card-body.card-body-menu
+    .col-xs-1.col-sm-1
+      p DashBoard
+    .col-xs-1.col-sm-1(ng-repeat="itemMain in moduleLinkGenerator")
+      p {{itemMain.key}}
+    .flex-container.card-body-network-right
+      p Network > Company
+    //.col-xs-6.col-sm-6.card-body-network-right
+      p Network > Company
+  .row.margin-card
+    .col-xs-2.col-sm-2 
+      .row.card-body
+        .sub-card-title
+          p Summary
+          hr
+        .sub-card-body
+          ul(ng-repeat="summaryItem in summaryList")
+            li {{summaryItem}}
+    .col-xs-10.col-sm-10
+      .row.card-body.card-body-right
+          listmenudirective
