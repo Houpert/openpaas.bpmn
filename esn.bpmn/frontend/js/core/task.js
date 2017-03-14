@@ -39,7 +39,7 @@ angular.module('esn.bpmn')
 
     $scope.bpmnFormDataList = refreshFormDataList();
 
-    var myListTaskModal = $modal({title: 'Activiti list task', scope: $scope, template: 'bpmnJs/views/html/listTask.html', show: false});
+    var myListTaskModal = $modal({title: 'Activiti list task', scope: $scope, template: 'bpmnJs/views/modal/listTask.html', show: false});
     $scope.showListTaskModal = function(id) {
       myListTaskModal.show();
     };

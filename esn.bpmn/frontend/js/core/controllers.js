@@ -18,13 +18,13 @@ angular.module('esn.bpmn')
 
     $scope.userInfo = userInfo();
 
-    var myBpmnListModal = $modal({title: 'BPMN List', scope: $scope, template: 'bpmnJs/views/html/bpmnList.html', show: false});
+    var myBpmnListModal = $modal({title: 'BPMN List', scope: $scope, template: 'bpmnJs/views/modal/bpmnList.html', show: false});
     $scope.showModal = function(id) {
       $scope.listBpmnFile = listFile();
       myBpmnListModal.show();
     };
 
-    var myListTaskModal = $modal({title: 'Activiti list task', scope: $scope, template: 'bpmnJs/views/html/listTask.html', show: false});
+    var myListTaskModal = $modal({title: 'Activiti list task', scope: $scope, template: 'bpmnJs/views/modal/listTask.html', show: false});
     $scope.showListTaskModal = function(id) {
       myListTaskModal.show();
     };
