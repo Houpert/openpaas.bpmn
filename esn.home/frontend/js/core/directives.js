@@ -10,19 +10,30 @@ angular.module('esn.home')
     };
   })
 
-  .directive('listmenudirective', function() {
+  .directive('listMenuDirective', function() {
     return {
       restrict: 'E',
       templateUrl: '/home/views/list-menu-directive.html'
     };
   })
 
-  .directive('submenudirective', function() {
+  .directive('subMenuDirective', function() {
     return {
       restrict: 'E',
       scope:{
         moduleList: '='
       },
       templateUrl: '/home/views/sub-menu-directive.html'
+    };
+  })
+
+  .directive('summaryDirective', function() {
+    return {
+      restrict: 'E',
+      scope:{
+        summaryList: '=',
+        summaryTitle: '='
+      },
+      templateUrl: '/home/views/summary-directive.html'
     };
   });

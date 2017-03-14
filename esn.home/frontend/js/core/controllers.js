@@ -3,13 +3,17 @@
 angular.module('esn.home')
   .controller('homeController', function($scope, userService, notificationFactory) {
 
+    $scope.titleDashboard = 'DashBoard';
+    $scope.summaryTitle = 'Summary';
+    $scope.networkTitle = 'Network > Company';  //TODO Company need to be get from somewhere ? (to define with partenair)
+
     var accesEmail = 'yoann@open-paas.org';
 
     function summaryListGenerator() {
       return ['Notification', 'Execution', 'BPMN Added'];
     }
 
-    function moduleLinkGenerator(isDemo, acces) {
+    function moduleLinkGenerator(acces) {
       return [
           {
           key: 'General',
@@ -17,17 +21,17 @@ angular.module('esn.home')
               {
               value: 'Network',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'Company',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'Users',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'Workflow',
@@ -42,17 +46,17 @@ angular.module('esn.home')
             {
               value: 'DataSets',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'Mapping Rules',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'Events',
               link: 'http',
-              acces: isDemo
+              acces: acces
             }
           ]
         },
@@ -62,17 +66,17 @@ angular.module('esn.home')
             {
               value: 'Hubs',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'Legacy Systems',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'IoT Devices',
               link: 'http',
-              acces: isDemo
+              acces: acces
             }
           ]
         },
@@ -82,17 +86,17 @@ angular.module('esn.home')
             {
               value: 'Definition',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'Execution',
               link: 'http',
-              acces: isDemo
+              acces: acces
             },
             {
               value: 'Opt. Algorithms',
               link: 'http',
-              acces: isDemo
+              acces: acces
             }
           ]
         },
@@ -102,7 +106,7 @@ angular.module('esn.home')
             {
               value: 'Events',
               link: 'http',
-              acces: isDemo
+              acces: acces
             }
           ]
         }
@@ -117,13 +121,14 @@ angular.module('esn.home')
       var acces = isAcces(email);
 
       $scope.summaryList = summaryListGenerator();
-      $scope.moduleLinkGenerator = moduleLinkGenerator(true, true);
+      $scope.moduleLinkGenerator = moduleLinkGenerator(true); //TODO Make a web service for generating the user homePage (to define with partenair)
 
+      /* Keep for the next demo
       if(acces){
         $scope.moduleLinkGenerator.splice(2,3);
       }else{
         $scope.moduleLinkGenerator.splice(0,2);
-      }
+      }*/
     }
 
     function userInfo() {

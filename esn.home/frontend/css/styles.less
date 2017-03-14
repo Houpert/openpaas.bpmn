@@ -1,8 +1,6 @@
+@import './subMenu';
+
 .my-card {
-  /*position: relative;
-  background: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-  margin-bottom: 30px;*/
   width: 95%;
 }
 
@@ -42,33 +40,38 @@
     margin-right: inherit;
   }
 
-  .sub-card-title p{
+  .dashboard-content {
+    p {
+      font-weight: bold;
+      text-align: center;
+    }
+    div{
+      padding-right: 0px;
+    }
+  }
+
+  .dashboard-title p{
     text-align: left;
-    font-weight: bold;
-    margin-left: 4px;
-    margin-top: 5px;
-    margin-bottom: inherit;
   }
 
-  .sub-card-body p{
-    font-weight: bold;
-    margin-bottom: inherit;
-  }
-
-  .sub-card-body-div-menu{
-    margin-left: 6px;
-  }
-
-  .sub-card-body ul{
-    margin-left: -10px;
-  }
-
-  .card-body-network-right{
+  .dashboard-network p{
     text-align: right;
-    margin-right: 3px;
+    margin-right: 6px;
   }
+}
 
-  .repeat-br{
-    margin-top: 40%;
+@media (max-width: @screen-md-min) {
+  #home {
+    .dashboard-content p{
+      font-size: 10px;
+    }
+  }
+}
+
+@media (min-width: @screen-xs-max) {
+  #home {
+    .dashboard-content p{
+      font-size: 12px;
+    }
   }
 }

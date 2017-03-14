@@ -1,22 +1,16 @@
 .my-card#home
-  .row.margin-card.card-body.card-body-menu
-    .col-xs-1.col-sm-1
-      p DashBoard
+  .row.margin-card.card-body.card-body-menu.dashboard-content
+    .col-xs-1.col-sm-1.dashboard-title
+      p {{titleDashboard}}
     .col-xs-1.col-sm-1(ng-repeat="itemMain in moduleLinkGenerator")
       p {{itemMain.key}}
-    .flex-container.card-body-network-right
-      p Network > Company
-    //.col-xs-6.col-sm-6.card-body-network-right
-      p Network > Company
+    .flex-container.dashboard-network
+      p {{networkTitle}}
+
   .row.margin-card
     .col-xs-2.col-sm-2 
       .row.card-body
-        .sub-card-title
-          p Summary
-          hr
-        .sub-card-body
-          ul(ng-repeat="summaryItem in summaryList")
-            li {{summaryItem}}
+        summary-directive(summary-list='summaryList', summary-title='summaryTitle')
     .col-xs-10.col-sm-10
       .row.card-body.card-body-right
-          listmenudirective
+        list-menu-directive
