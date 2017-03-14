@@ -41,6 +41,7 @@ var myAwesomeModule = new AwesomeModule('esn.bpmn', {
         '../components/api-check/dist/api-check.js',
         '../components/angular-formly/dist/formly.js',
         '../components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
+        '../components/file-saver/FileSaver.min.js',
         'app.js',
         'services/bpmnServices.js',
         'services/userService.js',
