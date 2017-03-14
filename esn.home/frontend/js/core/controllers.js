@@ -7,8 +7,6 @@ angular.module('esn.home')
     $scope.summaryTitle = 'Summary';
     $scope.networkTitle = 'Network > Company';  //TODO Company need to be get from somewhere ? (to define with partenair)
 
-    var accesEmail = 'yoann@open-paas.org';
-
     function summaryListGenerator() {
       return ['Notification', 'Execution', 'BPMN Added'];
     }
@@ -113,13 +111,7 @@ angular.module('esn.home')
       ];
     }
 
-    function isAcces(email) {
-      return (accesEmail === email);
-    }
-
     function initView(email) {
-      var acces = isAcces(email);
-
       $scope.summaryList = summaryListGenerator();
       $scope.moduleLinkGenerator = moduleLinkGenerator(true); //TODO Make a web service for generating the user homePage (to define with partenair)
 
