@@ -114,9 +114,8 @@ angular.module('esn.home')
     function initView(email) {
       $scope.summaryList = summaryListGenerator();
       $scope.moduleLinkGenerator = moduleLinkGenerator(true); //TODO Make a web service for generating the user homePage (to define with partenair)
-
       /* Keep for the next demo
-      if(acces){
+      if(accesEmail === email){
         $scope.moduleLinkGenerator.splice(2,3);
       }else{
         $scope.moduleLinkGenerator.splice(0,2);
