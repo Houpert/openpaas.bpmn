@@ -9,10 +9,10 @@ angular.module('esn.bpmn')
   };
 })
 
-.directive('bpmnListSubheader', function() {
+.directive('subheaderMenu', function() {
   return {
     restrict: 'E',
-    templateUrl: '/bpmnJs/views/sub-header/bpmn-list-subheader.html'
+    templateUrl: '/bpmnJs/views/subHeader.html'
   };
 })
 ;

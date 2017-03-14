@@ -1,5 +1,6 @@
 sub-header
-  bpmn-list-subheader
+  subheader-menu
+
 
 body(ng-app='esn.bpmn', ng-controller='bpmnController')
   #js-drop-zone.content
@@ -10,21 +11,23 @@ body(ng-app='esn.bpmn', ng-controller='bpmnController')
             |  to get started.
         #js-canvas.canvas
         #js-properties-panel
-      ul.buttons
-        li
-          input.js-upload-diagram(ng-model='photo', onchange='angular.element(this).scope().file_changed(this)', type='file', accept='text/xml')
-        li
-          a(ng-click='saveXML()', href='', title='Save')
-            | Save local
-        li
-          a(ng-click='showModal()', href='', title='List')
-            span.glyphicon.glyphicon-th-list
+
+      #editor
+        ul.buttons.opacity-buttons
+          li
+            input.js-upload-diagram(ng-model='photo', onchange='angular.element(this).scope().file_changed(this)', type='file', accept='text/xml')
+          li
+            a(ng-click='saveXML()', href='', title='Save')
+              | Save local
+          li
+            a(ng-click='showModal()', href='', title='List')
+              span.glyphicon.glyphicon-th-list
               | List
-        li
-          a(ng-click='saveXMLServer()', href='', title='Save')
-            span.glyphicon.glyphicon-save
+          li
+            a(ng-click='saveXMLServer()', href='', title='Save')
+              span.glyphicon.glyphicon-save
               | Save
-        li
-          a(ng-click='activitiExecuteBpmn()', href='', title='activiti')
-            span.glyphicon.glyphicon-export
+          li
+            a(ng-click='activitiExecuteBpmn()', href='', title='activiti')
+              span.glyphicon.glyphicon-export
               | Execute
