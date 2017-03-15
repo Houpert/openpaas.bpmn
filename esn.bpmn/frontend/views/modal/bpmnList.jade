@@ -11,13 +11,13 @@
                   th Open
                   th Delete
               tbody
-                tr(ng-repeat='id in listBpmnFile')
-                  td {{id}}
+                tr(ng-repeat='item in listBpmnFile')
+                  td {{item.name}}
                   td
-                    a(ng-click='readServerFile(id);', href='', title='Open')
+                    a(ng-click='readServerFile(item.id);', href='', title='Open')
                       span.glyphicon.glyphicon-open
                   td
-                    a(ng-click='deleteFile(id, index);', href='', title='Delete')
+                    a(ng-click='deleteFile(item.id, index);', href='', title='Delete')
                       span.glyphicon.glyphicon-remove
           .modal-footer
             button.btn.btn-default(type='button', ng-click='$hide()') Close

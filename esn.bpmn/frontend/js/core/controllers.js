@@ -88,10 +88,19 @@ angular.module('esn.bpmn')
       });
     }
 
+    function getFileName(fileData) {
+      userService.getFileName(fileData).then(function(res) {
+        $scope.listBpmnFile.push(res);
+      });
+    }
+
     function listFile() {
       return userService.listFile().then(function(result) {
-        $scope.listBpmnFile = result.data;
-        return result.data;
+        $scope.listBpmnFile = [];
+        for (var i in result.data) {
+          getFileName(result.data[i]);
+        }
+        return $scope.listBpmnFile;
       }, function(err) {
         notificationFactory.weakError('Error', err);
       });

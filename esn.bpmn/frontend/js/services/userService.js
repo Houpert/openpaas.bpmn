@@ -13,6 +13,15 @@ angular.module('esn.bpmn')
       });
     };
 
+    var getFileName = function(id) {
+      return $http.get(apiFileUrl + id).then(function(response) {
+        var dataJson = {};
+        dataJson.id = id;
+        dataJson.name = response.headers()['content-disposition'].split('\"')[1];
+        return dataJson;
+      });
+    };
+
     var selectFile = function(id) {
       return $http.get(apiFileUrl + id).then(function(response) {
         return response;
@@ -43,10 +52,11 @@ angular.module('esn.bpmn')
 
     return {
       deleteFile:deleteFile,
-      getToken:getToken,
+      getFileName:getFileName,
       listFile:listFile,
       selectFile:selectFile,
       userInfo:userInfo,
-      writeFile:writeFile
+      writeFile:writeFile,
+      getToken:getToken
     };
   });
