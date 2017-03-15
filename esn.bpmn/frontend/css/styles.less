@@ -2,11 +2,15 @@
 @import './task';
 @import './subheader';
 
-@import (less) './app-bpmn.css';
-@import (less) './bpmn-embeded.css';
-@import (less) './diagram-js.css';
+@import (less) './bpmn-style-merge.css';
+@import (less) '../components/bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
+@import (less) '../components/bpmn-js/dist/assets/diagram-js.css';
 
 
 .opacity-buttons li a{
-  opacity: inherit;;
+  opacity: inherit;
+}
+
+.djs-palette{
+  margin-top: 115px;
 }
