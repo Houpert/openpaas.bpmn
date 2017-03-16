@@ -17,7 +17,7 @@
                     a(ng-click='readServerFile(item.id);', href='', title='Open')
                       span.glyphicon.glyphicon-open
                   td
-                    a(ng-click='deleteFile(item.id, index);', href='', title='Delete')
+                    a(ng-click='deleteFile(item.id, $index);', href='', title='Delete')
                       span.glyphicon.glyphicon-remove
           .modal-footer
             button.btn.btn-default(type='button', ng-click='$hide()') Close
