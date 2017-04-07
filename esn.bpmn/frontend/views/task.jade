@@ -1,6 +1,3 @@
-sub-header
-  subheader-menu
-
 .my-task-manager#task
   body(ng-app='esn.bpmn', ng-controller='bpmnTask')
     .task-manager-margin
@@ -31,7 +28,7 @@ sub-header
                 button.btn.btn-secondary.pull-right(type='submit', ng-click='cancel()') Cancel
         div(ng-show='!hasTask')
           h2 No task to do
-      ul.buttons.opacity-buttons
+      //ul.buttons.opacity-buttons
         li.bpmn-icon-size
           a(ng-click='showListTaskModal()', href='', title='List')
             span.glyphicon.glyphicon-list-alt
