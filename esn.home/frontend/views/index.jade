@@ -1,46 +1,24 @@
-.my-card#home
-  .row.margin-card
-    .col-xs-12.col-sm-12
-      .row.card-body
-        h2 WHAT IS C2NET?
-        p The goal of C2NET Project is the creation of cloud-enabled tools for supporting the SMEs supply network optimization of manufacturing and logistic assets based on collaborative demand, production and delivery plans. C2NET Project will provide a scalable real-time architecture, platform and software to allow the supply network partners:
-        ul
-          li To create cloud-enabled tools
-          li To support the SMEs supply network optimization of manufacturing and logistic assets based on collaborative demand, production and delivery plans
-      .row.card-body
-        h2 PROJECT OBJECTIVES
-        ul
-          li Increased capability for better and faster reaction to market changes by being able to use holistic global and local optimization algorithms in a collaborative value chain
-          li Reduced complexity of production systems by at least an order of magnitude through an interoperable de-centralised architecture approach and interoperability frameworks
-          li Productivity increase of about 30% through the enhanced utilisation of resources and information taking a holistic view in a collaborative value chain
-      .row.card-body
-        h2 PROJECT RESULTS
-        ul
-          li To develop a new approach for facilitating collaborative demand, production and delivery plans along the supply network.
-          li To provide new tools for supporting the supply network optimization of manufacturing and logistic assets.
-          li To securely store relevant information from supply network partners in public cloud, community cloud or private cloud, ensuring data security and provide the ability of data sharing and data analytics.
-          li To support decision-makers with intuitive UIs that display in real-time the right data at the right time, built in advanced apps for mobile devices for selective management functionalities across the supply network.
-
-
-  //.row.margin-card.card-body.card-body-menu.dashboard-content
-    .col-xs-1.col-sm-1.dashboard-title
-      p {{titleDashboard}}
-    .col-xs-1.col-sm-1(ng-repeat="itemMain in moduleLinkGenerator")
-      p {{itemMain.key}}
-    .flex-container.dashboard-network
-      p {{networkTitle}}
-
-  //.row.margin-card
-    .col-xs-10.col-sm-10
-      .row.card-body.card-body-right
-        list-menu-directive
-    .col-xs-2.col-sm-2.remove-padding
-      .row.card-body.summary-card
-        summary-directive(summary-list='summaryList', summary-title='summaryTitle')
-  //.row.margin-card.card-body.card-body-menu.dashboard-content
-    .col-xs-1.col-sm-1.dashboard-title
-      p {{titleDashboard}}
-    .col-xs-1.col-sm-1(ng-repeat="itemMain in moduleLinkGenerator")
-      p {{itemMain.key}}
-    .flex-container.dashboard-network
-      p {{networkTitle}}
+.subheader-aware-cnet
+    .my-card
+        #home
+            .row.margin-card
+                .col-xs-12.col-sm-12
+                    .row.card-body
+                        h2 WHAT IS C2NET?
+                        p The goal of C2NET Project is the creation of cloud-enabled tools for supporting the SMEs supply network optimization of manufacturing and logistic assets based on collaborative demand, production and delivery plans. C2NET Project will provide a scalable real-time architecture, platform and software to allow the supply network partners:
+                        ul
+                            li To create cloud-enabled tools
+                            li To support the SMEs supply network optimization of manufacturing and logistic assets based on collaborative demand, production and delivery plans
+                    .row.card-body
+                        h2 PROJECT OBJECTIVES
+                        ul
+                            li Increased capability for better and faster reaction to market changes by being able to use holistic global and local optimization algorithms in a collaborative value chain
+                            li Reduced complexity of production systems by at least an order of magnitude through an interoperable de-centralised architecture approach and interoperability frameworks
+                            li Productivity increase of about 30% through the enhanced utilisation of resources and information taking a holistic view in a collaborative value chain
+                    .row.card-body
+                        h2 PROJECT RESULTS
+                        ul
+                            li To develop a new approach for facilitating collaborative demand, production and delivery plans along the supply network.
+                            li To provide new tools for supporting the supply network optimization of manufacturing and logistic assets.
+                            li To securely store relevant information from supply network partners in public cloud, community cloud or private cloud, ensuring data security and provide the ability of data sharing and data analytics.
+                            li To support decision-makers with intuitive UIs that display in real-time the right data at the right time, built in advanced apps for mobile devices for selective management functionalities across the supply network.
