@@ -1,5 +1,0 @@
-.col-xs-2.col-sm-2#sub-menu(ng-repeat="itemMain in moduleList")
-  p.sub-title-card {{itemMain.key}}
-  div.sub-card-body(ng-repeat="item in itemMain.list")
-    a(ng-if="item.acces === true" href="{{item.link}}") {{item.value}}
-    div(ng-if="item.acces === false") {{item.value}}

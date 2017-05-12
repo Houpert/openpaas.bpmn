@@ -35,8 +35,6 @@ var myAwesomeModule = new AwesomeModule('esn.home', {
       // Register every exposed frontend scripts
       var jsFiles = [
         'app.js',
-        'core/services.js',
-        'core/directives.js',
         'core/controllers.js'
       ];
       webserverWrapper.injectAngularModules('home', jsFiles, ['esn.home'], ['esn']);
