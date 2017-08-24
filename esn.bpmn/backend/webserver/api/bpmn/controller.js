@@ -1,6 +1,6 @@
 'use strict';
 
-var logger, core, filestore;
+var logger, core, filestore, bpmnCore;
 
 function findCreatorFile(req, res) {
   if (!req.user._id) {
@@ -29,12 +29,49 @@ function findCreatorFile(req, res) {
   });
 }
 
+function listBpmn(req, res){
+  return bpmnCore.list(function (err, result) {
+    return res.status(200).json(result);
+  });
+}
+
+function saveBpmn(req, res){
+  var bpmnData = {
+    bpmnFileId : req.body.bpmnFileId,
+    name : req.body.fileName
+  };
+
+  return bpmnCore.save(bpmnData, function(err) {
+    var query = {
+      name: bpmnData.name,
+      bpmnFileId: bpmnData.bpmnFileId
+    };
+    if (err) {
+      return res.status(400).json(query);
+    } else {
+      return res.status(200).json(query);
+    }
+  });
+}
+
+function removeBpmn(req, res){
+  var query = { bpmnFileId : req.params.id};
+
+  return bpmnCore.remove(query ,function (err, result) {
+    return res.status(200).json(result);
+  });
+}
+
 module.exports = function(dependencies) {
   logger = dependencies('logger');
   filestore = dependencies('filestore');
   core = require('./core')(dependencies);
+  bpmnCore = require('./../../../lib/db/bpmnCore')(dependencies);
 
   return {
-    findCreatorFile: findCreatorFile
+    findCreatorFile: findCreatorFile,
+    listBpmn: listBpmn,
+    saveBpmn: saveBpmn,
+    removeBpmn: removeBpmn
   };
 };

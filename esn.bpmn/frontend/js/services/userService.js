@@ -1,26 +1,12 @@
 'use strict';
 
 angular.module('esn.bpmn')
-  .factory('userService', function($http, tokenAPI, fileUploadService) {
+  .factory('userService', function($http, tokenAPI, fileAPIService) {
 
     var listFileUrl = '/bpmnJs/api/myfiles';
+    var bpmnJsUrl = '/bpmnJs/api/';
     var apiFileUrl = '/api/files/';
     var apiUserUrl = '/api/user/';
-
-    var listFile = function() {
-      return $http.get(listFileUrl).then(function(response) {
-        return response;
-      });
-    };
-
-    var getFileName = function(id) {
-      return $http.get(apiFileUrl + id).then(function(response) {
-        var dataJson = {};
-        dataJson.id = id;
-        dataJson.name = response.headers()['content-disposition'].split('\"')[1];
-        return dataJson;
-      });
-    };
 
     var selectFile = function(id) {
       return $http.get(apiFileUrl + id).then(function(response) {
@@ -29,8 +15,10 @@ angular.module('esn.bpmn')
     };
 
     var deleteFile = function(id) {
-      return $http.delete(apiFileUrl + id).then(function(response) {
-        return response;
+      $http.delete(bpmnJsUrl+'removebpmn/'+id).then(function(response) {
+        return $http.delete(apiFileUrl + id).then(function(res) {
+          return res;
+        });
       });
     };
 
@@ -41,8 +29,31 @@ angular.module('esn.bpmn')
     };
 
     var writeFile = function(file) {
-      fileUploadService.get().addFile(file, true);
+       var idFile = fileAPIService.uploadBlob(apiFileUrl, file, 'application/octet-stream', file.size, null, null).then(function(response) {
+         saveBpmn(file.name, response.data._id)
+         return response.data._id;
+       });
     };
+
+    var listBpmn = function() {
+      return $http.get(bpmnJsUrl+'listbpmn').then(function(response) {
+        return response;
+      });
+    };
+
+    var saveBpmn = function(fileName, idFile) {
+     return $http.post(bpmnJsUrl+'savebpmn', {
+        fileName: fileName,
+        bpmnFileId: idFile
+      }).then(function(res){
+        return res;
+      },function(err){
+        return err;
+      }
+     );
+    };
+
+
 
     var getToken = function() {
       return tokenAPI.getNewToken().then(function(response) {
@@ -52,11 +63,11 @@ angular.module('esn.bpmn')
 
     return {
       deleteFile:deleteFile,
-      getFileName:getFileName,
-      listFile:listFile,
       selectFile:selectFile,
       userInfo:userInfo,
       writeFile:writeFile,
-      getToken:getToken
+      getToken:getToken,
+      listBpmn:listBpmn,
+      saveBpmn:saveBpmn
     };
   });

@@ -13,5 +13,17 @@ module.exports = function(dependencies) {
     authorizationMW.requiresAPILogin,
     controller.findCreatorFile);
 
+    router.get('/api/listbpmn',
+      authorizationMW.requiresAPILogin,
+      controller.listBpmn);
+
+    router.post('/api/savebpmn',
+        authorizationMW.requiresAPILogin,
+        controller.saveBpmn);
+
+    router.delete('/api/removebpmn/:id',
+        authorizationMW.requiresAPILogin,
+        controller.removeBpmn);
+
   return router;
 };

@@ -5,17 +5,11 @@ angular.module('esn.bpmn')
 
     $scope.selectedTab = 'executor';
 
-    function getFileName(fileData) {
-      userService.getFileName(fileData).then(function(res) {
-        $scope.listBpmnFile.push(res);
-      });
-    }
-
     function listFile() {
-      return userService.listFile().then(function(result) {
+      return userService.listBpmn().then(function(result) {
         $scope.listBpmnFile = [];
         for (var i in result.data) {
-          getFileName(result.data[i]);
+          $scope.listBpmnFile.push(result.data[i]);
         }
         return $scope.listBpmnFile;
       }, function(err) {
