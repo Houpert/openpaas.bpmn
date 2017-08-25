@@ -22,8 +22,6 @@ angular.module('esn.bpmn')
     $scope.showModal = function(id) {
       $scope.listBpmnFile = listFile();
 
-      userService.listBpmn();
-
       myBpmnListModal.show();
     };
 

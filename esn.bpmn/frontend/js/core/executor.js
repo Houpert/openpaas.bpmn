@@ -21,9 +21,6 @@ angular.module('esn.bpmn')
 
     $scope.executeProcess = function(name, id) {
       userService.selectFile(id).then(function(result) {
-        console.log(name);
-        console.log(id);
-        console.log(result.data);
         var blob = new Blob([result.data], {type: 'text/xml'});
         var fileOfBlob = new File([blob], name);
         bpmnService.activitiExecuteBpmn(fileOfBlob);

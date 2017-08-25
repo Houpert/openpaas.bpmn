@@ -36,21 +36,20 @@ angular.module('esn.bpmn')
     };
 
     var listBpmn = function() {
-      return $http.get(bpmnJsUrl+'listbpmn').then(function(response) {
+      return $http.get(bpmnJsUrl + 'listbpmn').then(function(response) {
         return response;
       });
     };
 
     var saveBpmn = function(fileName, idFile) {
-     return $http.post(bpmnJsUrl+'savebpmn', {
+      return $http.post(bpmnJsUrl + 'savebpmn', {
         fileName: fileName,
         bpmnFileId: idFile
-      }).then(function(res){
+      }).then(function(res) {
         return res;
-      },function(err){
+      }, function(err) {
         return err;
-      }
-     );
+      });
     };
 
 
