@@ -3,7 +3,7 @@
 angular.module('esn.bpmn')
   .factory('bpmnService', function($http, fileUploadService, notificationFactory) {
     //TODO manage config return file list server
-    var webServiceActivitiURL = 'http://10.31.0.114:8090/';
+    var webServiceActivitiURL = 'http://localhost:8090/';
     var webServiceActivitiExecuteBpmnURL = 'action/parse/execute';
     var webServiceActivitiTaskForm = 'action/task/list';
     var webServiceActivitiTaskList = 'action/data';

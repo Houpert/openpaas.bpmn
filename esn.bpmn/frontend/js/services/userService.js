@@ -52,6 +52,15 @@ angular.module('esn.bpmn')
             });
         };
 
+        var getFileName = function(id) {
+            return $http.get(bpmnJsUrl + 'find/' + id).then(function(response) {
+                var dataJson = {};
+                dataJson.id = response.data.bpmnFileId;
+                dataJson.name = response.data.name;
+                return dataJson;
+            });
+        };
+
         var getToken = function() {
             return tokenAPI.getNewToken().then(function(response) {
                 return response.data;
@@ -65,6 +74,7 @@ angular.module('esn.bpmn')
             writeFile: writeFile,
             getToken: getToken,
             listBpmn: listBpmn,
-            saveBpmn: saveBpmn
+            saveBpmn: saveBpmn,
+            getFileName: getFileName
         };
     });
