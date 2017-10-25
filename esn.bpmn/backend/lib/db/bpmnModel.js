@@ -12,6 +12,10 @@ module.exports = function(dependencies) {
     name: {
       type: String,
       unique: false
+    },
+    company: {
+      type: String,
+      unique: false
     }
   });
 

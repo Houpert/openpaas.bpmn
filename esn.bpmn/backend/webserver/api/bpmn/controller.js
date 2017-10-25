@@ -57,21 +57,33 @@ function findFile(req, res) {
 }
 
 function listBpmn(req, res) {
+    var email = req.user.accounts[0].emails[0];
+    var domaineMail = email.substring(email.lastIndexOf("@") +1);
     return bpmnCore.list(function(err, result) {
-        return res.status(200).json(result);
+        var filterResult = [];
+        for (var i in result) {
+          if(result[i].company === domaineMail){
+              filterResult.push(result[i]);
+          }
+        }
+        return res.status(200).json(filterResult);
     });
 }
 
 function saveBpmn(req, res) {
+    var email = req.user.accounts[0].emails[0];
+    var domaineMail = email.substring(email.lastIndexOf("@") +1);
     var bpmnData = {
         bpmnFileId: req.body.bpmnFileId,
-        name: req.body.fileName
+        name: req.body.fileName,
+        company: domaineMail
     };
 
     return bpmnCore.save(bpmnData, function(err) {
-        var query = {
+      var query = {
             name: bpmnData.name,
-            bpmnFileId: bpmnData.bpmnFileId
+            bpmnFileId: bpmnData.bpmnFileId,
+            company: bpmnData.company
         };
         if (err) {
             return res.status(400).json(query);
